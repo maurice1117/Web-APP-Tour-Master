@@ -11,7 +11,7 @@ function Form({ route, method }) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const name = method === "login" ? "Login" : "Register";
+    const name = method === "login" ? "登入" : "註冊";
 
     const handleSubmit = async (e) => {
         setLoading(true);
@@ -34,38 +34,58 @@ function Form({ route, method }) {
     };
 
     return (
-        <div className="form-container">
+        <div className={`container ${method}`}>
+            {/* 左側表單區域 */}
             <form onSubmit={handleSubmit}>
-                <h1>{name}</h1>
-                <input
-                    className="form-input"
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Username"
-                />
-                <input
-                    className="form-input"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
-                {loading && <LoadingIndicator />}
-                <button className="form-button" type="submit">
-                    {name}
-                </button>
+                <div className="left-section">
+                    <h1 className="name">Travling!</h1>
+                    <h2 className="title">{name}</h2>
+                    <div className="input-container">
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="請輸入用戶名稱"
+                            className="input"
+                        />
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="請輸入密碼"
+                            className="input"
+                        />
+                    </div>
+                    {loading && <LoadingIndicator />}
+                    <button className="button" type="submit">
+                        {name}
+                    </button>
+                    <p className="footer-text">
+                        {method === "login" ? (
+                            <>
+                                還沒有帳號嗎？<Link to="/register">註冊</Link>
+                            </>
+                        ) : (
+                            <>
+                                已經有帳號了嗎？<Link to="/login">登入</Link>
+                            </>
+                        )}
+                    </p>
+                </div>
             </form>
-            {/* 動態顯示帳號相關訊息 */}
-            {method === "login" ? (
-                <p className="form-message">
-                    還沒有帳號嗎？<Link to="/register">註冊</Link>
-                </p>
-            ) : (
-                <p className="form-message">
-                    已經有帳號嗎？<Link to="/login">登入</Link>
-                </p>
-            )}
+
+            {/* 右側圖片區域 */}
+            <div className="right-section">
+                <img
+                    src={
+                        method === "login"
+                            ? "https://i.postimg.cc/zBsXywLD/iphaank-58409901-170643610603788-9093298758546613071-n.jpg"
+                            : "https://i.postimg.cc/vTcQJhZL/image.jpg"
+                    }
+                    alt="背景圖片"
+                    className="image"
+                />
+            </div>
         </div>
     );
 }
