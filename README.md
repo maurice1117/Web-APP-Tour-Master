@@ -12,9 +12,6 @@ Figma: https://www.figma.com/design/tme6hVJkQF8VX1knz9TzFi/travelaja-(Community)
 #### 前端終端機
 ```
 - cd Web-APP-Tour-Master/frontend
-- 創建.env檔案
-    - 內容：VITE_API_URL = 'http://127.0.0.1:8000'
-    - ps. 這裡url會根據後端終端機的url改變
 - npm install
 - npm run dev
 ```
@@ -22,6 +19,7 @@ Figma: https://www.figma.com/design/tme6hVJkQF8VX1knz9TzFi/travelaja-(Community)
 #### 後端終端機
 ```
 - cd Web-APP-Tour-Master/backend
+- pip install -r requirements.txt
 - python manage.py migrate
 - python manage.py runserver
     - 這裡會出現url，沒意外的話應該長'http://127.0.0.1:8000'
