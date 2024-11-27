@@ -25,7 +25,13 @@ Figma: https://www.figma.com/design/tme6hVJkQF8VX1knz9TzFi/travelaja-(Community)
     - 這裡會出現url，沒意外的話應該長'http://127.0.0.1:8000'
 ```
 
+## 後端/資料庫管理
 
+#### Superuser
+```
+- Account: admin
+- Password: admin
+```
 
 
 ---
