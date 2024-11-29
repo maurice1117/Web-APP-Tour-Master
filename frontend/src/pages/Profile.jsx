@@ -9,6 +9,8 @@ function Profile() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [avatar, setAvatar] = useState(null); // 存儲新頭像
+  const [avatarPreview, setAvatarPreview] = useState(""); // 預覽頭像
 
   useEffect(() => {
     getAccount();
@@ -17,9 +19,15 @@ function Profile() {
   const getAccount = () => {
     api
       .get("/api/user/info/")
-      .then((res) => res.data)
-      .then((data) => {
-        setAccount(data);
+      .then((res) => {
+        console.log("Account Data:", res.data);
+        setAccount(res.data);
+  
+        if (res.data.avatar) {
+          setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
+        } else {
+          setAvatarPreview("https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"); 
+        }
       })
       .catch((err) => alert(err));
   };
@@ -59,6 +67,38 @@ function Profile() {
       });
   };
 
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAvatar(file);
+      // setAvatarPreview(URL.createObjectURL(file)); // 更新頭像預覽
+    }
+  };
+
+  const handleAvatarSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("avatar", avatar);
+
+    api
+      .post("/api/user/upload-avatar/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setMessage("Avatar updated successfully!");
+          setAccount({ ...account, avatar: res.data.avatar });
+          setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
+        }
+      })
+      .catch((err) => {
+        setMessage("Failed to update avatar.");
+      });
+  };
+
   if (account === null) {
     return <div>Loading...</div>;
   }
@@ -73,6 +113,20 @@ function Profile() {
         <p><strong>ID:</strong> {account.id}</p>
         <p><strong>Email:</strong> {account.email}</p>
         <p><strong>Create Time:</strong> {formattedDate}</p>
+        <img src={avatarPreview} alt="Avatar" className="avatar-img"/>
+
+        {/* Avatar */}
+        <div className="avatar-section">
+          <h2>Change/Upload Avatar</h2>
+          <form onSubmit={handleAvatarSubmit}>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+            />
+            <button type="submit">Upload Avatar</button>
+          </form>
+        </div>
       </div>
 
       <div className="password-change">

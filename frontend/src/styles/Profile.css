@@ -56,4 +56,10 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+.avatar-img {
+  width: 50px; /* You can adjust the size as needed */
+  height: 50px; /* Keep the width and height the same for a perfect circle */
+  border-radius: 50%; /* This makes it a circle */
+  object-fit: cover; /* Ensures the image fills the circle without distortion */
+}
 
