@@ -1,7 +1,7 @@
 # API reference
 ## search
 ### get attractions
-根據輸入地點，生成多個旅遊景點  
+根據輸入地點，生成9個旅遊景點，並且對於每個景點各自生成一張照片  
 Url: `search/location`  
 Method: `GET`  
 
@@ -9,15 +9,19 @@ Method: `GET`
 location: string
 
 #### response
-attractions: array of string
+status: success/error  
+attractions: array[9] of string  
+images: array[9] of string(url)  
+(attractions和images按照順序1-1對應)
 
 ### get introduction
-根據旅遊景點，生成照片及介紹  
+根據旅遊景點，生成3張照片及介紹  
 Url: `search/attraction`  
 Method: `GET`  
 #### params
 atrraction: string  
 
 #### response
-image: string(url)  
+status: success/error  
+images: array[3] of string(url)  
 introduction: string  
