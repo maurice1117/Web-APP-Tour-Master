@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // 加入 Link
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
@@ -8,6 +8,8 @@ import LoadingIndicator from "./LoadingIndicator";
 function Form({ route, method }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -17,21 +19,39 @@ function Form({ route, method }) {
         setLoading(true);
         e.preventDefault();
 
+        if (method === "register" && password !== confirmPassword) {
+            alert("密碼和確認密碼不一致！");
+            setLoading(false);
+            return;
+        }
+
         try {
-            const res = await api.post(route, { username, password });
+            const requestData = method === "login" 
+                ? { username, password } 
+                : { username, password, email };
+
+            const res = await api.post(route, requestData);
+
             if (method === "login") {
-                localStorage.setItem(ACCESS_TOKEN, res.data.access);
-                localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                navigate("/");
+                if (res.data && res.data.access && res.data.refresh) {
+                    localStorage.setItem(ACCESS_TOKEN, res.data.access);
+                    localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                    navigate("/");
+                } else {
+                    alert("登入失敗，請檢查用戶名或密碼");
+                }
             } else {
                 navigate("/login");
             }
         } catch (error) {
-            alert(error);
+            console.error("Error during login:", error); 
+            alert("發生錯誤，請稍後再試");
         } finally {
             setLoading(false);
         }
     };
+
+    const isFormValid = username && password && (method === "login" || (email && confirmPassword === password));
 
     return (
         <div className={`container ${method}`}>
@@ -55,9 +75,27 @@ function Form({ route, method }) {
                             placeholder="請輸入密碼"
                             className="input"
                         />
+                        {method === "register" && (  // Only show email and confirm password inputs on registration
+                            <>
+                                <input
+                                    type="password"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="請確認密碼"
+                                    className="input"
+                                />
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="請輸入電子郵件"
+                                    className="input"
+                                />
+                            </>
+                        )}
                     </div>
                     {loading && <LoadingIndicator />}
-                    <button className="button" type="submit">
+                    <button className="button" type="submit" disabled={!isFormValid}>
                         {name}
                     </button>
                     <p className="footer-text">

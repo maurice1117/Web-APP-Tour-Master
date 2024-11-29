@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-from api.views import CreateUserView
+from api.views import CreateUserView, CurrentUserView, ChangePasswordView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -12,4 +12,6 @@ urlpatterns = [
     path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("api-auth/", include("rest_framework.urls")),
     path("api/", include("api.urls")),
+    path("api/user/info/", CurrentUserView.as_view(), name="current_user"),
+    path("api/user/change-password/", ChangePasswordView.as_view(), name="change_password"),
 ]
