@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 function Home() {
@@ -7,15 +7,19 @@ function Home() {
     const handleLogout =  (e) => {
         navigate("/logout");
     }
-
+    
     return (
         <div>
-            <h1>home page</h1>
-            <button onClick={handleLogout}>
-                Logout
-            </button>
+            <div>
+                <h1>Home page</h1>
+                <Link to="/favorite">Favorite</Link>
+                <br/>
+                <Link to="/profile">Profile</Link>
+                <br/>
+                <button onClick={handleLogout}>Logout</button>
+            </div>
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;
