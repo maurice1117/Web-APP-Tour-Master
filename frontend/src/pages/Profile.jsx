@@ -36,12 +36,12 @@ function Profile() {
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      setMessage("New passwords do not match.");
+      setMessage("新密碼確認不一致");
       return;
     }
 
     if (!oldPassword || !newPassword || !confirmPassword) {
-      setMessage("Please fill out all fields.");
+      setMessage("請填寫所有欄位");
       return;
     }
 
@@ -51,16 +51,16 @@ function Profile() {
       .post("/api/user/change-password/", { old_password: oldPassword, new_password: newPassword })
       .then((res) => {
         if (res.status === 200) {
-          setMessage("Password changed successfully!");
+          setMessage("密碼更改成功！");
           setOldPassword("");
           setNewPassword("");
           setConfirmPassword("");
         } else {
-          setMessage("Failed to change password. Please check your inputs.");
+          setMessage("密碼更改失敗，請檢查輸入");
         }
       })
       .catch((err) => {
-        setMessage("Failed to change password. Please check your inputs.");
+        setMessage("密碼更改失敗，請檢查輸入");
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -78,7 +78,7 @@ function Profile() {
   const handleAvatarSubmit = (e) => {
     e.preventDefault();
     if (!avatar) {
-      setMessage("Please select an avatar.");
+      setMessage("請選擇圖片");
       return;
     }
 
@@ -94,79 +94,94 @@ function Profile() {
       })
       .then((res) => {
         if (res.status === 200) {
-          setMessage("Avatar updated successfully!");
+          setMessage("個人圖片更新成功！");
           setAccount({ ...account, avatar: res.data.avatar });
           setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
         }
       })
       .catch((err) => {
-        setMessage("Failed to update avatar.");
+        setMessage("個人圖片更新失敗");
       });
   };
 
   if (account === null) {
-    return <div>Loading...</div>;
+    return <div>載入中...</div>;
   }
 
   const formattedDate = new Date(account.date_joined).toLocaleDateString("zh-TW");
 
   return (
-    <div className="profile-container">
-      <h1>Profile Page</h1>
+    <>
+      {/* 導覽欄 */}
+      <nav className="navbar">
+        <div className="navbar-content">
+          <h1>travelaja</h1>
+          <div className="navbar-links">
+            <a href="/">首頁</a>
+            <a href="/favorite">我的最愛</a>
+            <a href="/about">關於我們</a>
+            <a href="/logout">登出</a>
+          </div>
+        </div>
+      </nav>
 
-      <div className="profile-details">
-        <p><strong>ID:</strong> {account.id}</p>
-        <p><strong>Email:</strong> {account.email}</p>
-        <p><strong>Create Time:</strong> {formattedDate}</p>
-        <img src={avatarPreview} alt="Avatar" className="avatar-img" />
+      <div className="profile-container">
+        {/* 顯示訊息 */}
+        {message && <p className={`message ${message.includes("成功") ? 'success' : 'error'}`}>{message}</p>}
 
-        {/* Avatar */}
-        <div className="avatar-section">
-          <h2>Change/Upload Avatar</h2>
+        <div className="profile-left">
+          <h1>個人檔案</h1>
+          <p><strong>ID：</strong> <span className="id-text">{account.id}</span></p>
+          <p><strong>Email：</strong> <span className="id-text">{account.email}</span></p>
+          <p><strong>帳號創建時間：</strong> <span className="id-text">{formattedDate}</span></p>
+
+          <h2>變更密碼</h2>
+          <form onSubmit={handlePasswordChange}>
+            <label htmlFor="oldPassword">原始密碼：</label>
+            <input
+              type="password"
+              id="oldPassword"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+              placeholder="請輸入原始密碼"
+              required
+            />
+            <label htmlFor="newPassword">新密碼：</label>
+            <input
+              type="password"
+              id="newPassword"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="請輸入新密碼"
+              required
+            />
+            <label htmlFor="confirmPassword">確認新密碼：</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="再次輸入新密碼"
+              required
+            />
+            <button type="submit" disabled={isSubmitting}>變更密碼</button>
+          </form>
+        </div>
+
+        <div className="profile-right">
+          <img src={avatarPreview} alt="Avatar" className="avatar-img" />
+          <h2>個人圖片</h2>
           <form onSubmit={handleAvatarSubmit}>
             <input
               type="file"
               accept="image/*"
               onChange={handleAvatarChange}
             />
-            {/* Disable the button until a file is selected */}
-            <button type="submit" disabled={!avatar}>Upload Avatar</button>
+            <button type="submit" disabled={!avatar}>變更個人圖片</button>
           </form>
         </div>
       </div>
-
-      <div className="password-change">
-        <h2>Change Password</h2>
-        <form onSubmit={handlePasswordChange}>
-          <label htmlFor="oldPassword">Old Password:</label>
-          <input
-            type="password"
-            id="oldPassword"
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-            required
-          />
-          <label htmlFor="newPassword">New Password:</label>
-          <input
-            type="password"
-            id="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
-          <label htmlFor="confirmPassword">Confirm New Password:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-          <button type="submit" disabled={isSubmitting}>Change Password</button>
-        </form>
-        {message && <p className={`message ${message.includes("successfully") ? 'success' : 'error'}`}>{message}</p>}
-      </div>
-    </div>
+    </>
   );
 }
 

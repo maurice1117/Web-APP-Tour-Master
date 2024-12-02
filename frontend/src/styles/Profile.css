@@ -1,65 +1,187 @@
 .profile-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.profile-details {
-  margin-bottom: 20px;
-}
-
-.password-change {
-  margin-top: 30px;
-}
-
-form {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  max-width: 900px;
+  margin-left: 100px;
+  padding: 70px;
+  padding-top: 10px;
+  gap: 30px;
+  font-family: Arial, sans-serif;
+  position: relative;
 }
 
-form label {
-  margin: 5px 0;
+.profile-left {
+  flex: 3;
+  text-align: left;
 }
 
-form input {
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.profile-left h1 {
+  font-size: 35px;
+  color: #ff7300;
+  margin-bottom: 15px;
+  margin-top: 35px;
 }
 
-button {
+.profile-left h2 {
+  font-size: 25px;
+  color: black;
+  margin-top: 23px;
+  margin-bottom: 0px;
+}
+
+.profile-left p {
+  margin: 5px;
+  font-size: 20px;
+  color: black;
+}
+
+.profile-left .id-text {
+  color: #4c4c4c; 
+}
+
+.profile-left form {
+  width: 100%; 
+  text-align: left; 
+  margin-left: 0px;
+  padding-top: 2px;
+}
+
+.profile-left label {
+  display: block;
+  font-weight: bold;
+}
+
+.profile-left input {
+  width: 100%;
   padding: 10px;
-  background-color: #4caf50;
-  color: white;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.profile-left button {
+  background-color: #ff7300;
+  color: #fff;
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
 }
 
-button:hover {
-  background-color: #45a049;
-}
-
-.message.success {
-  color: green;
-}
-
-.message.error {
-  color: red;
-}
-
-button:disabled {
+.profile-left button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-.avatar-img {
-  width: 50px; /* You can adjust the size as needed */
-  height: 50px; /* Keep the width and height the same for a perfect circle */
-  border-radius: 50%; /* This makes it a circle */
-  object-fit: cover; /* Ensures the image fills the circle without distortion */
+
+.profile-left button:hover:not(:disabled) {
+  background-color: #e66400;
 }
 
+.profile-right {
+  flex: 1;
+  text-align: center;
+  padding-left: 150px;
+  padding-right: 70px;
+}
+
+.avatar-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 90px;
+  margin-bottom: 10px;
+  margin-left: 35px;
+  object-fit: cover;
+}
+
+.profile-right h2 {
+  color: #000000;
+  font-size: 25px;
+  margin-top: 0px;
+  margin-left: 35px;
+}
+
+.profile-right input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.profile-right form {
+  width: 100%; 
+  text-align: center; 
+  margin-left: 0px;
+  padding-top: 2px;
+}
+
+.profile-right button {
+  background-color: #ff7300;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-right button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.profile-right button:hover:not(:disabled) {
+  background-color: #e66400;
+}
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.message.success {
+  color: #4CAF50;
+}
+
+.message.error {
+  color: #f44336;
+}
+
+.navbar {
+  background-color: black;
+  color: white;
+  padding: 15px 25px;
+}
+
+.navbar-content {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.navbar h1 {
+  font-size: 27px;
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.navbar-links {
+  display: flex; 
+  gap: 20px; 
+  align-items: center; 
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
