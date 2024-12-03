@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import "../styles/Profile.css";
+import Bar from "../components/Bar";
 
 function Profile() {
   const [account, setAccount] = useState(null);
@@ -112,19 +113,7 @@ function Profile() {
 
   return (
     <>
-      {/* 導覽欄 */}
-      <nav className="navbar">
-        <div className="navbar-content">
-          <h1>travelaja</h1>
-          <div className="navbar-links">
-            <a href="/">首頁</a>
-            <a href="/favorite">我的最愛</a>
-            <a href="/about">關於我們</a>
-            <a href="/logout">登出</a>
-          </div>
-        </div>
-      </nav>
-
+      <Bar />
       <div className="profile-container">
         {/* 顯示訊息 */}
         {message && <p className={`message ${message.includes("成功") ? 'success' : 'error'}`}>{message}</p>}

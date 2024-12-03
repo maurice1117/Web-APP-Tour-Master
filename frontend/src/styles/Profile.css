@@ -151,37 +151,3 @@
 .message.error {
   color: #f44336;
 }
-
-.navbar {
-  background-color: black;
-  color: white;
-  padding: 15px 25px;
-}
-
-.navbar-content {
-  display: flex; 
-  justify-content: space-between;
-  align-items: center; 
-}
-
-.navbar h1 {
-  font-size: 27px;
-  margin: 0;
-  margin-bottom: 2px;
-}
-
-.navbar-links {
-  display: flex; 
-  gap: 20px; 
-  align-items: center; 
-}
-
-.navbar-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.navbar-links a:hover {
-  text-decoration: underline;
-}

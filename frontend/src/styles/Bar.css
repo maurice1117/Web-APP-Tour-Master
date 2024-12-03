@@ -1,0 +1,33 @@
+.bar {
+    background-color: black;
+    color: white;
+    padding: 11px 25px 2px 25px;
+}
+
+.bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  
+  .bar h1 {
+    font-size: 27px;
+    margin: 0;
+  }
+  
+  .bar-links {
+    display: flex; 
+    gap: 20px; 
+    align-items: center; 
+  }
+  
+  .bar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .bar-links a:hover {
+    text-decoration: underline;
+  }
