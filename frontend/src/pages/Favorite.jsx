@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Location from "../components/Location";
+import Bar from "../components/Bar";
 import "../styles/Favorite.css";
 
 function Favorite() {
@@ -60,6 +61,7 @@ function Favorite() {
 
     return (
         <div>
+            <Bar/>
             <div>
                 <h1>Favorite Locations</h1>
                 {locations.map((location) => (
