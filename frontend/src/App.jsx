@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import Profile from "./pages/Profile"
 import Favorite from "./pages/Favorite"
+import About from "./pages/About"
 import ProtectedRoute from "./components/ProtectedRoute"
 
 function Logout() {
@@ -43,6 +44,13 @@ function App() {
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        /><Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <About />
             </ProtectedRoute>
           }
         />
