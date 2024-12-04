@@ -1,5 +1,5 @@
 .bar {
-    background-color: black;
+    background-color: white;
     color: white;
     padding: 11px 25px 2px 25px;
 }
@@ -11,23 +11,27 @@
 }
 
   
-  .bar h1 {
-    font-size: 27px;
-    margin: 0;
-  }
+.bar h1 {
+  font-size: 27px;
+  font-family: Poppins;
+  font-weight: bold;
+  color: #43a047;
+  margin: 0;
+}
+
+.bar-links {
+  display: flex; 
+  gap: 20px; 
+  align-items: center; 
+}
+
+.bar-links a {
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.bar-links a:hover {
+  color: #43a047
+}
   
-  .bar-links {
-    display: flex; 
-    gap: 20px; 
-    align-items: center; 
-  }
-  
-  .bar-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  .bar-links a:hover {
-    text-decoration: underline;
-  }
