@@ -1,0 +1,23 @@
+.attraction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.attraction-block {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.attraction-block img {
+  width: 100%;
+  height: auto;
+}
+
+.attraction-block button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}

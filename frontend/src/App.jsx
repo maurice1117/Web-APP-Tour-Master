@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound"
 import Profile from "./pages/Profile"
 import Favorite from "./pages/Favorite"
 import About from "./pages/About"
+import AttractionDetail from "./pages/AttractionDetail"
 import ProtectedRoute from "./components/ProtectedRoute"
 
 function Logout() {
@@ -28,6 +29,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/attraction/:name"
+          element={
+            <ProtectedRoute>
+              <AttractionDetail />
             </ProtectedRoute>
           }
         />

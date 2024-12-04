@@ -8,9 +8,9 @@ from . import searching
 
 @csrf_exempt
 def handle_location(request):
-    if request.method == "GET":
+    if request.method == "POST":  # 改 POST
         try:
-            data = json.loads(bytes.decode(request.body,"utf-8")) 
+            data = json.loads(request.body)  # 直接讀取 request.body
 
             if "location" not in data or not data["location"]:
                 return JsonResponse({"status": "error", "message": "Missing or invalid location"}, status=400)
@@ -35,13 +35,14 @@ def handle_location(request):
     
 @csrf_exempt
 def handle_attraction(request):
-    if request.method == "GET":
+    if request.method == "POST":  # 改 POST
         try:
-            data = json.loads(bytes.decode(request.body,"utf-8")) 
+            data = json.loads(request.body)  # 直接讀取 request.body
+
             if "attraction" not in data or not data["attraction"]:
                 return JsonResponse({"status": "error", "message": "Missing or invalid attraction"}, status=400)
             
-            # generate 3 photos ans introduction
+            # generate 3 photos and introduction
             attraction = data["attraction"]
             images = searching.search_photo(attraction)
             introduction = GPT.generate_detail(attraction)
@@ -53,3 +54,4 @@ def handle_attraction(request):
             return JsonResponse({"status": "error", "message": "An unexpected error occurred"}, status=500)
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
+    
