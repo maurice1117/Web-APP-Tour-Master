@@ -1,23 +1,41 @@
-import react from "react"
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import Login from "./pages/Login"
-import Register from "./pages/Register"
-import Home from "./pages/Home"
-import NotFound from "./pages/NotFound"
-import Profile from "./pages/Profile"
-import Favorite from "./pages/Favorite"
-import About from "./pages/About"
-import AttractionDetail from "./pages/AttractionDetail"
-import ProtectedRoute from "./components/ProtectedRoute"
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
+import Favorite from "./pages/Favorite";
+import About from "./pages/About";
+import AttractionDetail from "./pages/AttractionDetail";
+import ProtectedRoute from "./components/ProtectedRoute";
+import axios from 'axios';
 
 function Logout() {
-  localStorage.clear()
-  return <Navigate to="/login" />
+  useEffect(() => {
+    const deleteResponseFile = async () => {
+      try {
+        const result = await axios.post("http://127.0.0.1:8000/search/delete-response-file", {}, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(result.data.message);
+      } catch (error) {
+        console.error("Error deleting response.json:", error.response?.data?.message || error.message);
+      }
+    };
+
+    deleteResponseFile(); // 刪除 response.json
+    localStorage.clear();
+  }, []);
+
+  return <Navigate to="/login" />;
 }
 
 function RegisterAndLogout() {
-  localStorage.clear()
-  return <Register />
+  localStorage.clear();
+  return <Register />;
 }
 
 function App() {
@@ -55,7 +73,8 @@ function App() {
               <Profile />
             </ProtectedRoute>
           }
-        /><Route
+        />
+        <Route
           path="/about"
           element={
             <ProtectedRoute>
@@ -69,7 +88,7 @@ function App() {
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

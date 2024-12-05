@@ -42,3 +42,10 @@ Figma: https://www.figma.com/design/tme6hVJkQF8VX1knz9TzFi/travelaja-(Community)
     - 1天內同個帳號不用重新登入，使用同一個 refresh token（沒登出的情況下一直處於登入狀態）
     - 1天後要重新登入取得新的 access, refresh token
 - 在沒有登入的情況下沒辦法切換到 home page，會自動導向 login page
+
+---
+
+## 搜尋頁面說明
+- 當輸入欲搜尋地點並按下按鈕，得到的response會存在/frontend/src/assets底下
+    - 在已經有response.json的情況下再次輸入欲搜尋地點，會把原本的內容覆蓋掉
+- 登出後此檔案(response.json)會被刪除
