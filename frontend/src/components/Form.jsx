@@ -31,7 +31,6 @@ function Form({ route, method }) {
                 : { username, password, email };
 
             const res = await api.post(route, requestData);
-
             if (method === "login") {
                 if (res.data && res.data.access && res.data.refresh) {
                     localStorage.setItem(ACCESS_TOKEN, res.data.access);
@@ -41,17 +40,26 @@ function Form({ route, method }) {
                     alert("登入失敗，請檢查用戶名或密碼");
                 }
             } else {
+                alert("註冊成功！請重新登入");
                 navigate("/login");
             }
         } catch (error) {
-            console.error("Error during login:", error); 
-            alert("發生錯誤，請稍後再試");
+            console.error("Error during login:", error);
+            if (error.response?.status === 400 && method === "register") {
+                alert("註冊失敗，該用戶名已存在");
+            }
+            else if (error.response?.status === 401 && method === "login") {
+                alert("登入失敗，請檢查用戶名與密碼輸入");
+            }
+            else { 
+                alert("發生錯誤，請稍後再試");
+            }
         } finally {
             setLoading(false);
         }
     };
 
-    const isFormValid = username && password && (method === "login" || (email && confirmPassword === password));
+    const isFormValid = username && password && (method === "login" || (email && confirmPassword));
 
     return (
         <div className={`container ${method}`}>
@@ -75,7 +83,7 @@ function Form({ route, method }) {
                             placeholder="請輸入密碼"
                             className="input"
                         />
-                        {method === "register" && (  // Only show email and confirm password inputs on registration
+                        {method === "register" && (
                             <>
                                 <input
                                     type="password"
