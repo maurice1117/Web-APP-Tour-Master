@@ -1,48 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { SearchGlobalContext } from '../components/SearchGlobalContext';
 import Bar from "../components/Bar";
 import "../styles/AttractionDetail.css";
 
 const AttractionDetail = () => {
   const { index } = useParams(); // URL 中的 index
-  const [response, setResponse] = useState(null);
-
-  const checkResponseFile = async () => {
-    try {
-      const result = await axios.get('/src/assets/response.json', {
-        headers: {
-          'Cache-Control': 'no-cache',
-        },
-      });
-      setResponse(result.data);
-    } catch (error) {
-      if (error.response && error.response.status === 404) {
-        console.log('response.json not found');
-        setResponse(null);
-      } else {
-        console.error('Error loading response.json:', error);
-      }
-    }
-  };
+  const { searchData } = useContext(SearchGlobalContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    checkResponseFile();
-  }, []);
+    if (!searchData || searchData.status !== 'success') {
+      // go back to home
+      navigate('/');
+    }
+  }, [searchData, navigate]);
 
   return (
     <div>
       <Bar />
-      {response ? (
+      {searchData ? (
         <div className="attraction-detail">
           <h2>introduction</h2>
-          <p>{response.description[index]}</p>
+          <p>{searchData.introductions[index]}</p>
           <h2>attractions</h2>
-          <p>{response.attractions[index]}</p>
+          <p>{searchData.attractions[index]}</p>
           <h2>images</h2>
-          <img src={response.images1[index]} style={{ height: "200px" }}/>
-          <img src={response.images2[index]} style={{ height: "200px" }}/>
-          <img src={response.images3[index]} style={{ height: "200px" }}/>
+          <img src={searchData.images1[index]} style={{ height: "200px" }}/>
+          <img src={searchData.images2[index]} style={{ height: "200px" }}/>
+          <img src={searchData.images3[index]} style={{ height: "200px" }}/>
         </div>
       ) : (
         <p>Loading...</p>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { SearchGlobalProvider } from './components/SearchGlobalContext';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -11,6 +12,7 @@ import Attraction from './pages/Attraction';
 import AttractionDetail from "./pages/AttractionDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
 import axios from 'axios';
+
 
 function Logout() {
   useEffect(() => {
@@ -36,67 +38,70 @@ function Logout() {
 
 function RegisterAndLogout() {
   localStorage.clear();
+  sessionStorage.clear();
   return <Register />;
 }
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/attraction"
-          element={
-            <ProtectedRoute>
-              <Attraction />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/attraction/:index"
-          element={
-            <ProtectedRoute>
-              <AttractionDetail />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/favorite"
-          element={
-            <ProtectedRoute>
-              <Favorite />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <ProtectedRoute>
-              <About />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <SearchGlobalProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/attraction"
+            element={
+              <ProtectedRoute>
+                <Attraction />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/attraction/:index"
+            element={
+              <ProtectedRoute>
+                <AttractionDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/favorite"
+            element={
+              <ProtectedRoute>
+                <Favorite />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <ProtectedRoute>
+                <About />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<RegisterAndLogout />} />
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </SearchGlobalProvider>
   );
 }
 

@@ -30,17 +30,6 @@ async def handle_location(request):
             introductions = await asyncio.gather(*tasks)
 
             response_data = {"status": "success", "attractions": attractions, "images1": images1, "images2": images2, "images3": images3,"introductions": introductions}
-
-            '''            
-            # Corrected path: Save to Web-APP-Tour-Master/frontend/src/assets
-            project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            frontend_path = os.path.join(project_root, "frontend/src/assets")
-            os.makedirs(frontend_path, exist_ok=True)
-            file_path = os.path.join(frontend_path, "response.json")
-
-            with open(file_path, "w") as f:
-                json.dump(response_data, f, indent=4)
-            '''
             return JsonResponse(response_data, status=200)
         
         except Exception as e:
@@ -54,9 +43,9 @@ Deprecated.
 '''
 @csrf_exempt
 def handle_attraction(request):
-    if request.method == "POST":  # 改 POST
+    if request.method == "POST":
         try:
-            data = json.loads(request.body)  # 直接讀取 request.body
+            data = json.loads(request.body)
 
             if "attraction" not in data or not data["attraction"]:
                 return JsonResponse({"status": "error", "message": "Missing or invalid attraction"}, status=400)
@@ -74,7 +63,7 @@ def handle_attraction(request):
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
     
-    
+# can delete?
 @csrf_exempt
 def delete_response_file(request):
     if request.method == "POST":
