@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Favorite from "./pages/Favorite";
 import About from "./pages/About";
+import Attraction from './pages/Attraction';
 import AttractionDetail from "./pages/AttractionDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
 import axios from 'axios';
@@ -47,6 +48,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/attraction"
+          element={
+            <ProtectedRoute>
+              <Attraction />
             </ProtectedRoute>
           }
         />
