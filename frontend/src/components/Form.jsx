@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
+import EyeIcon from "./EyeIcon";
 
 function Form({ route, method }) {
     const [username, setUsername] = useState("");
@@ -11,6 +12,8 @@ function Form({ route, method }) {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const navigate = useNavigate();
 
     const name = method === "login" ? "登入" : "註冊";
@@ -76,22 +79,34 @@ function Form({ route, method }) {
                             placeholder="請輸入用戶名稱"
                             className="input"
                         />
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="請輸入密碼"
-                            className="input"
-                        />
+                        <div className="password-container">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="請輸入密碼"
+                                className="input"
+                            />
+                            <EyeIcon 
+                                isVisible={showPassword} 
+                                onClick={() => setShowPassword(!showPassword)} 
+                            />
+                        </div>
                         {method === "register" && (
                             <>
-                                <input
-                                    type="password"
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    placeholder="請確認密碼"
-                                    className="input"
-                                />
+                                <div className="password-container">
+                                    <input
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        placeholder="請確認密碼"
+                                        className="input"
+                                    />
+                                    <EyeIcon 
+                                        isVisible={showConfirmPassword} 
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)} 
+                                    />
+                                </div>
                                 <input
                                     type="email"
                                     value={email}
