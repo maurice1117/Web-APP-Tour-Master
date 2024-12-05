@@ -31,20 +31,15 @@ const Attraction = () => {
     }
   };
 
-  useEffect(() => {
-    checkResponseFile();
-    loadFavorites();
-  }, []);
-
   const createLocation = (attraction, index) => {
     const confirmAddToFavorites = window.confirm(`Do you want to add "${attraction}" to your favorite locations?`);
   
     if (confirmAddToFavorites) {
       const place = attraction;
-      const description = "";
-      const photo1 = response.images[index] || "";
-      const photo2 = "";
-      const photo3 = "";
+      const description = response.description[index];
+      const photo1 = response.images1[index] || "";
+      const photo2 = response.images2[index] || "";
+      const photo3 = response.images3[index] || "";
   
       console.log({ place, description, photo1, photo2, photo3 });
   
@@ -67,6 +62,11 @@ const Attraction = () => {
     }
   };
 
+  useEffect(() => {
+    checkResponseFile();
+    loadFavorites();
+  }, []);
+
   return (
     <div>
       <Bar />
@@ -76,14 +76,14 @@ const Attraction = () => {
           {response.attractions.map((attraction, index) => (
             <div key={index} className="attraction-block">
               <h4>{attraction}</h4>
-              <img src={response.images[index]} alt={attraction} width="200" />
+              <img src={response.images1[index]} alt={attraction} width="200" />
               <button
                 onClick={() => createLocation(attraction, index)}
                 disabled={favorites.includes(attraction)} // 禁用已經加入的景點
               >
                 {favorites.includes(attraction) ? '💖' : '🤍'}
               </button>
-              <Link to={`/attraction/${attraction}`}>
+              <Link to={`/attraction/${index}`}>
                 <button>View More</button>
               </Link>
             </div>

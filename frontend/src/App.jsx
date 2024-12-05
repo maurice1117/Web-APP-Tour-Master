@@ -60,7 +60,7 @@ function App() {
           }
         />
         <Route
-          path="/attraction/:name"
+          path="/attraction/:index"
           element={
             <ProtectedRoute>
               <AttractionDetail />

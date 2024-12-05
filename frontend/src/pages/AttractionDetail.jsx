@@ -5,56 +5,44 @@ import Bar from "../components/Bar";
 import "../styles/AttractionDetail.css";
 
 const AttractionDetail = () => {
-  const { name } = useParams(); // URL 中的 attraction 名稱
-  const [details, setDetails] = useState(null);
+  const { index } = useParams(); // URL 中的 index
+  const [response, setResponse] = useState(null);
 
-  // 檢查 localStorage 是否已有保存的資料
-  useEffect(() => {
-    const savedDetails = localStorage.getItem(name);
-    if (savedDetails) {
-      setDetails(JSON.parse(savedDetails)); // 如果有直接使用已保存的資料
-    } else {
-      // 如果沒有保存的資料，就呼叫 API
-      const fetchDetails = async () => {
-        try {
-          const result = await axios.post('http://127.0.0.1:8000/search/attraction', {
-            attraction: name
-          }, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-          setDetails(result.data);
-          // 儲存到 localStorage 中
-          localStorage.setItem(name, JSON.stringify(result.data));
-        } catch (error) {
-          console.error('Error fetching details:', error);
-        }
-      };
-      fetchDetails();
+  const checkResponseFile = async () => {
+    try {
+      const result = await axios.get('/src/assets/response.json', {
+        headers: {
+          'Cache-Control': 'no-cache',
+        },
+      });
+      setResponse(result.data);
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.log('response.json not found');
+        setResponse(null);
+      } else {
+        console.error('Error loading response.json:', error);
+      }
     }
-  }, [name]);
+  };
 
-  const getDatails = () => {
-    console.log(name);
-    console.log(details);
-  }
+  useEffect(() => {
+    checkResponseFile();
+  }, []);
 
   return (
     <div>
       <Bar />
-      {details ? (
-        <div>
-          <button onClick={getDatails}>看看</button>
-          <h2>{name}</h2>
-          <h3>Introduction:</h3>
-          <p>{details.introduction}</p>
-          <h3>Images:</h3>
-          <div>
-            {details.images.map((img, idx) => (
-              <img key={idx} src={img} alt={name} width="200" />
-            ))}
-          </div>
+      {response ? (
+        <div className="attraction-detail">
+          <h2>introduction</h2>
+          <p>{response.description[index]}</p>
+          <h2>attractions</h2>
+          <p>{response.attractions[index]}</p>
+          <h2>images</h2>
+          <img src={response.images1[index]} style={{ height: "200px" }}/>
+          <img src={response.images2[index]} style={{ height: "200px" }}/>
+          <img src={response.images3[index]} style={{ height: "200px" }}/>
         </div>
       ) : (
         <p>Loading...</p>
