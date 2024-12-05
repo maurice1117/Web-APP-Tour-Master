@@ -6,9 +6,10 @@ from django.views.decorators.csrf import csrf_protect
 from . import GPT
 from . import searching
 import os
+import asyncio
 
 @csrf_exempt
-def handle_location(request):
+async def handle_location(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
@@ -17,15 +18,20 @@ def handle_location(request):
                 return JsonResponse({"status": "error", "message": "Missing or invalid location"}, status=400)
             
             location = data["location"]
+
+            # from location generate attractions
             attractions = GPT.generate_attractions(location)
 
-            images = []
-            for attraction in attractions:
-                image = searching.search_photo(attraction)[0]
-                images.append(image)
+            # from attractions generate images
+            images1, images2, images3 = await searching.search_photo(attractions)
 
-            response_data = {"status": "success", "attractions": attractions, "images": images}
+            # from attractions generate introduction
+            tasks = [GPT.generate_detail(attraction) for attraction in attractions]
+            introductions = await asyncio.gather(*tasks)
 
+            response_data = {"status": "success", "attractions": attractions, "images1": images1, "images2": images2, "images3": images3,"introductions": introductions}
+
+            '''            
             # Corrected path: Save to Web-APP-Tour-Master/frontend/src/assets
             project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
             frontend_path = os.path.join(project_root, "frontend/src/assets")
@@ -34,7 +40,7 @@ def handle_location(request):
 
             with open(file_path, "w") as f:
                 json.dump(response_data, f, indent=4)
-
+            '''
             return JsonResponse(response_data, status=200)
         
         except Exception as e:
@@ -43,6 +49,9 @@ def handle_location(request):
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
     
+'''
+Deprecated.
+'''
 @csrf_exempt
 def handle_attraction(request):
     if request.method == "POST":  # 改 POST
@@ -64,6 +73,7 @@ def handle_attraction(request):
             return JsonResponse({"status": "error", "message": "An unexpected error occurred"}, status=500)
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
+    
     
 @csrf_exempt
 def delete_response_file(request):

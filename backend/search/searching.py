@@ -1,10 +1,11 @@
-import requests
+import asyncio
 import config
+import aiohttp
 
 GOOGLE_url = "https://www.googleapis.com/customsearch/v1"
 BING_url = "https://api.bing.microsoft.com/v7.0/images/search"
 
-def search_photo_GOOGLE(attraction):
+async def search_photo_GOOGLE(attraction):
     params = {
         "key": config.GOOGLE_API_KEY,
         "cx": config.GOOGLE_ENGINE_ID,
@@ -14,14 +15,14 @@ def search_photo_GOOGLE(attraction):
         "num": 5
     }
 
-    response = requests.get(GOOGLE_url, params=params)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(GOOGLE_url, params=params) as response:
+            data = await response.json()
+            results = [item["link"] for item in data.get("items", [])[0:3]]
+            return results
 
-    # handle format
-    results =  [item["items"] for item in response.json()["link"][0:3]]
-    
-    return results
 
-def search_photo_BING(attraction):
+async def search_photo_BING(attraction):
     params = {
         "q": attraction,
         'mkt': 'zn-TW',
@@ -29,15 +30,27 @@ def search_photo_BING(attraction):
     }
     headers = {'Ocp-Apim-Subscription-Key': config.BING_API_KEY}
 
-    response = requests.get(BING_url, headers=headers, params=params)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(BING_url, headers=headers, params=params) as response:
+            data = await response.json()
+            results = [item["contentUrl"] for item in data.get("value", [])[0:3]]
+            return results
 
-    # handle format
-    results =  [item["contentUrl"] for item in response.json()["value"][0:3]]
-    
-    return results
 
-def search_photo(attraction):
+async def search_photo(attractions):
     if config.SEARCH_ENGINE == "GOOGLE":
-        return search_photo_GOOGLE(attraction)
+        tasks = [search_photo_GOOGLE(attraction) for attraction in attractions]
+        results = await asyncio.gather(*tasks)
     else:
-        return search_photo_BING(attraction)
+        tasks = [search_photo_BING(attraction) for attraction in attractions]
+        results = await asyncio.gather(*tasks)
+    
+    images1 = []
+    images2 = []
+    images3 = []
+    for result in results:
+        images1.append(result[0])
+        images2.append(result[1])
+        images3.append(result[2])
+
+    return images1, images2, images3
