@@ -27,7 +27,7 @@ const Attraction = () => {
     const confirmAddToFavorites = window.confirm(`Do you want to add "${attraction}" to your favorite locations?`);
     if (confirmAddToFavorites) {
       const place = attraction;
-      const description = localSearchData.description[index];
+      const description = localSearchData.introductions[index];
       const photo1 = localSearchData.images1[index] || "";
       const photo2 = localSearchData.images2[index] || "";
       const photo3 = localSearchData.images3[index] || "";
@@ -51,7 +51,6 @@ const Attraction = () => {
     }
   };
 
-  // 同步收藏數據的變化（支援多標籤頁同步）
   useEffect(() => {
     const handleStorageChange = () => {
       const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -79,7 +78,7 @@ const Attraction = () => {
               <img src={localSearchData.images1[index]} alt={attraction} width="200" />
               <button
                 onClick={() => createLocation(attraction, index)}
-                disabled={favorites.includes(attraction)} // 禁用已經加入的景點
+                disabled={favorites.includes(attraction)}
               >
                 {favorites.includes(attraction) ? '💖' : '🤍'}
               </button>
