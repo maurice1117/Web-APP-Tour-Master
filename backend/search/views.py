@@ -5,8 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 from . import GPT
 from . import searching
-import os
 import asyncio
+# import time
 
 @csrf_exempt
 async def handle_location(request):
@@ -19,15 +19,21 @@ async def handle_location(request):
             
             location = data["location"]
 
+            # start_time = time.time()
             # from location generate attractions
             attractions = GPT.generate_attractions(location)
+            # print(f"Gen. attractions: {time.time() - start_time:.2f}s")
 
+            # start_time = time.time()
             # from attractions generate images
             images1, images2, images3 = await searching.search_photo(attractions)
+            # print(f"Search images: {time.time() - start_time:.2f}s")
 
+            # start_time = time.time()
             # from attractions generate introduction
             tasks = [GPT.generate_detail(attraction) for attraction in attractions]
             introductions = await asyncio.gather(*tasks)
+            # print(f"Gen. introductions: {time.time() - start_time:.2f}s")
 
             response_data = {"status": "success", "attractions": attractions, "images1": images1, "images2": images2, "images3": images3,"introductions": introductions}
             return JsonResponse(response_data, status=200)
