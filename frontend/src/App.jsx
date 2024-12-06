@@ -9,6 +9,7 @@ import Favorite from "./pages/Favorite";
 import About from "./pages/About";
 import Attraction from './pages/Attraction';
 import AttractionDetail from "./pages/AttractionDetail";
+import FavoriteDetail from './pages/FavoriteDetail';
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function Logout() {
@@ -56,6 +57,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Favorite />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/favorite/:index"
+          element={
+            <ProtectedRoute>
+              <FavoriteDetail />
             </ProtectedRoute>
           }
         />
