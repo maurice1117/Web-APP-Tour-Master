@@ -1,42 +1,37 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SearchGlobalContext } from '../components/SearchGlobalContext';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Bar from "../components/Bar";
 import api from "../api";
 
 const Attraction = () => {
-  const { searchData } = useContext(SearchGlobalContext);
+  const [localSearchData, setLocalSearchData] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!searchData || searchData.status !== 'success') {
-      // go back to home
+    const storedSearchData = JSON.parse(localStorage.getItem('searchData'));
+    if (storedSearchData && storedSearchData.status === 'success') {
+      setLocalSearchData(storedSearchData);
+    } else {
       navigate('/');
     }
-  }, [searchData, navigate]);
+  }, [navigate]);
 
-  // what is this 0.0
   const loadFavorites = () => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
   };
 
-
   const createLocation = (attraction, index) => {
     const confirmAddToFavorites = window.confirm(`Do you want to add "${attraction}" to your favorite locations?`);
-  
     if (confirmAddToFavorites) {
       const place = attraction;
-      const description = searchData.description[index];
-      const photo1 = searchData.images1[index] || "";
-      const photo2 = searchData.images2[index] || "";
-      const photo3 = searchData.images3[index] || "";
-  
-      console.log({ place, description, photo1, photo2, photo3 });
-  
+      const description = localSearchData.description[index];
+      const photo1 = localSearchData.images1[index] || "";
+      const photo2 = localSearchData.images2[index] || "";
+      const photo3 = localSearchData.images3[index] || "";
+
       api
         .post("/api/locations/", { place, description, photo1, photo2, photo3 })
         .then((res) => {
@@ -44,7 +39,7 @@ const Attraction = () => {
             alert(`${attraction} added to favorites!`);
             const updatedFavorites = [...favorites, attraction];
             setFavorites(updatedFavorites);
-            localStorage.setItem('favorites', JSON.stringify(updatedFavorites)); // 儲存至 localStorage
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
           } else {
             alert('Failed to create location.');
           }
@@ -56,20 +51,32 @@ const Attraction = () => {
     }
   };
 
+  // 同步收藏數據的變化（支援多標籤頁同步）
   useEffect(() => {
+    const handleStorageChange = () => {
+      const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      setFavorites(storedFavorites);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
     loadFavorites();
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   return (
     <div>
       <Bar />
       <h1>Attraction Page</h1>
-      {searchData && searchData.status === 'success' && (
+      {localSearchData && localSearchData.status === 'success' && (
         <div className="attraction-grid">
-          {searchData.attractions.map((attraction, index) => (
+          {localSearchData.attractions.map((attraction, index) => (
             <div key={index} className="attraction-block">
               <h4>{attraction}</h4>
-              <img src={searchData.images1[index]} alt={attraction} width="200" />
+              <img src={localSearchData.images1[index]} alt={attraction} width="200" />
               <button
                 onClick={() => createLocation(attraction, index)}
                 disabled={favorites.includes(attraction)} // 禁用已經加入的景點

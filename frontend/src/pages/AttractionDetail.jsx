@@ -1,35 +1,47 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { SearchGlobalContext } from '../components/SearchGlobalContext';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Bar from "../components/Bar";
 import "../styles/AttractionDetail.css";
 
 const AttractionDetail = () => {
   const { index } = useParams(); // URL 中的 index
-  const { searchData } = useContext(SearchGlobalContext);
+  const [localSearchData, setLocalSearchData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!searchData || searchData.status !== 'success') {
-      // go back to home
+    const storedSearchData = JSON.parse(localStorage.getItem('searchData'));
+    if (storedSearchData && storedSearchData.status === 'success') {
+      setLocalSearchData(storedSearchData);
+    } else {
       navigate('/');
     }
-  }, [searchData, navigate]);
+  }, [navigate]);
 
   return (
     <div>
       <Bar />
-      {searchData ? (
+      {localSearchData ? (
         <div className="attraction-detail">
-          <h2>introduction</h2>
-          <p>{searchData.introductions[index]}</p>
-          <h2>attractions</h2>
-          <p>{searchData.attractions[index]}</p>
-          <h2>images</h2>
-          <img src={searchData.images1[index]} style={{ height: "200px" }}/>
-          <img src={searchData.images2[index]} style={{ height: "200px" }}/>
-          <img src={searchData.images3[index]} style={{ height: "200px" }}/>
+          <h2>Introduction</h2>
+          <p>{localSearchData.introductions[index]}</p>
+          <h2>Attractions</h2>
+          <p>{localSearchData.attractions[index]}</p>
+          <h2>Images</h2>
+          <img
+            src={localSearchData.images1[index]}
+            style={{ height: "200px" }}
+            alt="Image 1"
+          />
+          <img
+            src={localSearchData.images2[index]}
+            style={{ height: "200px" }}
+            alt="Image 2"
+          />
+          <img
+            src={localSearchData.images3[index]}
+            style={{ height: "200px" }}
+            alt="Image 3"
+          />
         </div>
       ) : (
         <p>Loading...</p>

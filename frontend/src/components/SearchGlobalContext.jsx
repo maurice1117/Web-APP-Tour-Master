@@ -4,15 +4,15 @@ export const SearchGlobalContext = createContext();
 
 export const SearchGlobalProvider = ({ children }) => {
   const [searchData, setSearchData] = useState(() => {
-    const savedData = sessionStorage.getItem('searchData');
+    const savedData = localStorage.getItem('searchData');
     return savedData ? JSON.parse(savedData) : null;
   });
 
   useEffect(() => {
     if (searchData) {
-      sessionStorage.setItem('searchData', JSON.stringify(searchData));
+      localStorage.setItem('searchData', JSON.stringify(searchData));
     } else {
-      sessionStorage.removeItem('searchData');
+      localStorage.removeItem('searchData');
     }
   }, [searchData]);
 

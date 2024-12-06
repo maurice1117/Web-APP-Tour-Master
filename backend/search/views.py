@@ -62,23 +62,3 @@ def handle_attraction(request):
             return JsonResponse({"status": "error", "message": "An unexpected error occurred"}, status=500)
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
-    
-# can delete?
-@csrf_exempt
-def delete_response_file(request):
-    if request.method == "POST":
-        try:
-            project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            file_path = os.path.join(project_root, "frontend", "src", "assets", "response.json")
-            
-            # 檢查檔案是否存在
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                return JsonResponse({"status": "success", "message": "response.json deleted successfully"}, status=200)
-            # 如果文件不存在，不做任何操作，不返回錯誤
-            return JsonResponse({"status": "success", "message": "response.json does not exist"}, status=200)
-
-        except Exception as e:
-            return JsonResponse({"status": "error", "message": f"Failed to delete file: {str(e)}"}, status=500)
-    else:
-        return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
