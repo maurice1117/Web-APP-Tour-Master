@@ -18,7 +18,7 @@ async def search_photo_GOOGLE(attraction):
     async with aiohttp.ClientSession() as session:
         async with session.get(GOOGLE_url, params=params) as response:
             data = await response.json()
-            results = [item["link"] for item in data.get("items", [])[0:3]]
+            results = [item["link"] for item in data.get("items", [])]
             return results
 
 
