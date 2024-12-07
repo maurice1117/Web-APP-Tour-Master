@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+
 /* hero-section 的外層容器 */
 .hero-section {
     position: relative;
@@ -7,6 +9,7 @@
     overflow: hidden;
   }
   
+
   /* 標題樣式 */
 .hero-section h1 {
     position: absolute;
@@ -14,8 +17,10 @@
     left: 8%; 
     transform: translate(-50%, -50%); /* 修正偏移 */
     color: white;
-    font-size: 32px; /* 調整字體大小 */
-    font-weight: bold;
+    font-size: 33.18px; /* 調整字體大小 */
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 增加字體陰影 */
     z-index: 2; /* 確保標題在圖片之上 */
   }
