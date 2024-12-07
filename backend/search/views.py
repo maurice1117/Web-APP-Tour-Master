@@ -5,8 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 from . import GPT
 from . import searching
-import os
 import asyncio
+# import time
 
 @csrf_exempt
 async def handle_location(request):
@@ -19,15 +19,21 @@ async def handle_location(request):
             
             location = data["location"]
 
+            # start_time = time.time()
             # from location generate attractions
             attractions = GPT.generate_attractions(location)
+            # print(f"Gen. attractions: {time.time() - start_time:.2f}s")
 
+            # start_time = time.time()
             # from attractions generate images
             images1, images2, images3 = await searching.search_photo(attractions)
+            # print(f"Search images: {time.time() - start_time:.2f}s")
 
+            # start_time = time.time()
             # from attractions generate introduction
             tasks = [GPT.generate_detail(attraction) for attraction in attractions]
             introductions = await asyncio.gather(*tasks)
+            # print(f"Gen. introductions: {time.time() - start_time:.2f}s")
 
             response_data = {"status": "success", "attractions": attractions, "images1": images1, "images2": images2, "images3": images3,"introductions": introductions}
             return JsonResponse(response_data, status=200)
@@ -60,25 +66,5 @@ def handle_attraction(request):
         except Exception as e:
             print(f"Error: {e}")
             return JsonResponse({"status": "error", "message": "An unexpected error occurred"}, status=500)
-    else:
-        return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)
-    
-# can delete?
-@csrf_exempt
-def delete_response_file(request):
-    if request.method == "POST":
-        try:
-            project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            file_path = os.path.join(project_root, "frontend", "src", "assets", "response.json")
-            
-            # 檢查檔案是否存在
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                return JsonResponse({"status": "success", "message": "response.json deleted successfully"}, status=200)
-            # 如果文件不存在，不做任何操作，不返回錯誤
-            return JsonResponse({"status": "success", "message": "response.json does not exist"}, status=200)
-
-        except Exception as e:
-            return JsonResponse({"status": "error", "message": f"Failed to delete file: {str(e)}"}, status=500)
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method"}, status=405)

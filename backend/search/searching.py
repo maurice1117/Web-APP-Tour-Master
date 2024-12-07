@@ -12,13 +12,13 @@ async def search_photo_GOOGLE(attraction):
         "searchType": "image",
         "imgSize": "large",
         "q": attraction,
-        "num": 5
+        "num": 10
     }
 
     async with aiohttp.ClientSession() as session:
         async with session.get(GOOGLE_url, params=params) as response:
             data = await response.json()
-            results = [item["link"] for item in data.get("items", [])[0:3]]
+            results = [item["link"] for item in data.get("items", [])]
             return results
 
 
@@ -26,14 +26,14 @@ async def search_photo_BING(attraction):
     params = {
         "q": attraction,
         'mkt': 'zn-TW',
-        'count': 5
+        'count': 10
     }
     headers = {'Ocp-Apim-Subscription-Key': config.BING_API_KEY}
 
     async with aiohttp.ClientSession() as session:
         async with session.get(BING_url, headers=headers, params=params) as response:
             data = await response.json()
-            results = [item["contentUrl"] for item in data.get("value", [])[0:3]]
+            results = [item["contentUrl"] for item in data.get("value", [])]
             return results
 
 
@@ -45,12 +45,36 @@ async def search_photo(attractions):
         tasks = [search_photo_BING(attraction) for attraction in attractions]
         results = await asyncio.gather(*tasks)
     
+    vaild_results = await asyncio.gather(*[extract_vaild_images(result) for result in results])
+
     images1 = []
     images2 = []
     images3 = []
-    for result in results:
-        images1.append(result[0])
-        images2.append(result[1])
-        images3.append(result[2])
+    for vaild_images in vaild_results:
+        images1.append(vaild_images[0])
+        images2.append(vaild_images[1])
+        images3.append(vaild_images[2])
 
     return images1, images2, images3
+
+
+async def extract_vaild_images(urls):
+    vaild_images = []
+    for url in urls:
+        if await is_vaild_image(url):
+            vaild_images.append(url)
+            if len(vaild_images) == 3:
+                return vaild_images
+    
+    while len(vaild_images) < 3:
+        vaild_images.append("")
+    return vaild_images
+
+
+async def is_vaild_image(url):
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.head(url, timeout=0.5) as response:
+                return response.status == 200
+    except:
+        return False

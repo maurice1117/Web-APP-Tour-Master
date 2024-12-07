@@ -1,13 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SearchGlobalContext } from '../components/SearchGlobalContext';
 import axios from 'axios';
 import Bar from "../components/Bar";
 
 const Home = () => {
   const [location, setLocation] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { setSearchData } = useContext(SearchGlobalContext);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -25,9 +23,9 @@ const Home = () => {
         },
       });
       console.log(result.data);
-      //save result to global context
-      setSearchData(result.data);
       
+      localStorage.setItem('searchData', JSON.stringify(result.data));
+
       navigate('/attraction');
     } catch (error) {
       console.error('Error fetching data:', error);
