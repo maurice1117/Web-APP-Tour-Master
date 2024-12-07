@@ -14,7 +14,7 @@ Figma: https://www.figma.com/design/tme6hVJkQF8VX1knz9TzFi/travelaja-(Community)
 - cd Web-APP-Tour-Master/frontend
 首次執行：
     - npm install
-- npm run dev
+    - npm run dev
 ```
 
 #### 後端終端機
