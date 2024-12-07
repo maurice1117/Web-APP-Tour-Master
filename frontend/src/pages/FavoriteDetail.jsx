@@ -17,20 +17,28 @@ function FavoriteDetail() {
             .get("/api/locations/")
             .then((res) => res.data)
             .then((data) => {
-                const selectedLocation = data.find(l => l.id === parseInt(index));
+                const selectedLocation = data.find((l) => l.id === parseInt(index));
                 setLocation(selectedLocation);
             })
             .catch((err) => alert(err));
     };
 
-    const deleteLocationDetail = (id) => {
+    const deleteLocationDetail = (id, place) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this location?");
         if (confirmDelete) {
+            
             api
                 .delete(`/api/locations/delete/${id}/`)
                 .then((res) => {
                     if (res.status === 204) {
                         alert("Location deleted!");
+
+                        const storedLocations = JSON.parse(localStorage.getItem("favorites")) || [];
+                        const updatedLocations = storedLocations.filter(
+                            (loc) => loc.trim().toLowerCase() !== place.trim().toLowerCase()
+                        );
+                        localStorage.setItem("favorites", JSON.stringify(updatedLocations));
+
                         navigate("/favorite");
                     } else {
                         alert("Failed to delete location.");
@@ -45,9 +53,10 @@ function FavoriteDetail() {
             <Bar />
             {location ? (
                 <div className="favorite-detail">
-
                     {/* 新增刪除按鈕 */}
-                    <button onClick={() => deleteLocationDetail(location.id)}>Delete Location</button>
+                    <button onClick={() => deleteLocationDetail(location.id, location.place)}>
+                        Delete Location
+                    </button>
 
                     <h2>{location.place}</h2>
                     <p>{location.description}</p>
