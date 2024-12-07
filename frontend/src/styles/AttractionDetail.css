@@ -21,3 +21,24 @@
   padding: 5px 10px;
   cursor: pointer;
 }
+
+/* Attraction.css */
+h1 {
+  text-align: center; /* 水平居中 */
+}
+
+.view-more-button {
+  background-color: #2e8b57; /* 深綠色背景 */
+  color: white; /* 白色文字 */
+  border: none; /* 無邊框 */
+  border-radius: 5px; /* 圓角 */
+  padding: 10px 15px; /* 內邊距 */
+  font-size: 14px; /* 字體大小 */
+  cursor: pointer; /* 鼠標指針變為點擊手勢 */
+  transition: background-color 0.3s ease; /* 平滑變化效果 */
+}
+
+.view-more-button:hover {
+  background-color: #256d46; /* 當鼠標懸停時顏色變深 */
+}
+

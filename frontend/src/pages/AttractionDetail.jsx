@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Bar from "../components/Bar";
+import "../styles/detail.css";
 import "../styles/AttractionDetail.css";
 import api from '../api';
 
 const AttractionDetail = () => {
-  const { index } = useParams(); // URL 中的 index
+  const { index } = useParams();
   const [localSearchData, setLocalSearchData] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
@@ -54,40 +55,71 @@ const AttractionDetail = () => {
     }
   };
 
+  const splitText = (text) => {
+    if (!text) return ["", ""];
+    const sentences = text.split(/(?<=[。！？\.\!\?])/g); // 按標點分割
+    if (sentences.length <= 1) return [text, ""];
+
+    let firstPart = "";
+    let secondPart = "";
+
+    let charCount = 0;
+    const mid = Math.ceil(text.length / 2);
+    for (let i = 0; i < sentences.length; i++) {
+      if (charCount + sentences[i].length <= mid) {
+        firstPart += sentences[i];
+        charCount += sentences[i].length;
+      } else {
+        secondPart += sentences[i];
+      }
+    }
+
+    return [firstPart.trim(), secondPart.trim()];
+  };
+
   return (
     <div>
       <Bar />
       {localSearchData ? (
-        <div className="attraction-detail">
-
-          {/* 顯示愛心圖示，並禁用已收藏的愛心 */}
+        <div className="detail-container">
           <button
+            className="favorite-button"
             onClick={() => !favorites.includes(localSearchData.attractions[index]) && createLocation(localSearchData.attractions[index])}
-            disabled={favorites.includes(localSearchData.attractions[index]) || isSaving} // 如果已經收藏或正在保存則禁用
+            disabled={favorites.includes(localSearchData.attractions[index]) || isSaving}
           >
-            {favorites.includes(localSearchData.attractions[index]) ? '💖' : '🤍'}
+            {favorites.includes(localSearchData.attractions[index]) ? '💖 Added' : '🤍 Add to Favorites'}
           </button>
 
-          <h2>Introduction</h2>
-          <p>{localSearchData.introductions[index]}</p>
-          <h2>Attractions</h2>
-          <p>{localSearchData.attractions[index]}</p>
-          <h2>Images</h2>
-          <img
-            src={localSearchData.images1[index]}
-            style={{ height: "200px" }}
-            alt="Image 1"
-          />
-          <img
-            src={localSearchData.images2[index]}
-            style={{ height: "200px" }}
-            alt="Image 2"
-          />
-          <img
-            src={localSearchData.images3[index]}
-            style={{ height: "200px" }}
-            alt="Image 3"
-          />
+          <h2 className="detail-header">景點介紹</h2>
+          <p className="detail-text">{localSearchData.attractions[index]}</p>
+
+          {/* 分割文字 */}
+          {(() => {
+            const [firstPart, secondPart] = splitText(localSearchData.introductions[index]);
+            return (
+              <>
+                <p className="detail-text">{firstPart}</p>
+                <img
+                  src={localSearchData.images1[index]}
+                  className="detail-image"
+                  alt="Image 1"
+                />
+                <p className="detail-text">{secondPart}</p>
+              </>
+            );
+          })()}
+
+          {/* 兩張並排照片 */}
+          <div className="detail-image-group">
+            <img
+              src={localSearchData.images2[index]}
+              alt="Image 2"
+            />
+            <img
+              src={localSearchData.images3[index]}
+              alt="Image 3"
+            />
+          </div>
         </div>
       ) : (
         <p>Loading...</p>

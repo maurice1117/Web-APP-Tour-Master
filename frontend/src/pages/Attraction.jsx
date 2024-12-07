@@ -69,7 +69,8 @@ const Attraction = () => {
   return (
     <div>
       <Bar />
-      <h1>Attraction Page</h1>
+      
+      <h1 className="search-title">🔄搜尋結果</h1>
       {localSearchData && localSearchData.status === 'success' && (
         <div className="attraction-grid">
           {localSearchData.attractions.map((attraction, index) => (
@@ -83,7 +84,7 @@ const Attraction = () => {
                 {favorites.includes(attraction) ? '💖' : '🤍'}
               </button>
               <Link to={`/attraction/${index}`}>
-                <button>View More</button>
+              <button className="view-more-button">View More</button>
               </Link>
             </div>
           ))}
