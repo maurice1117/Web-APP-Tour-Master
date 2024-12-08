@@ -63,6 +63,10 @@ async def extract_vaild_images(urls):
 
 
 async def is_vaild_image(url):
+    # avoid the web which cannot embedding
+    if url.startswith("https://i1."):
+        return False
+    
     try:
         async with aiohttp.ClientSession() as session:
             async with session.head(url, timeout=0.5) as response:

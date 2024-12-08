@@ -60,22 +60,31 @@ function FavoriteDetail() {
                     </button>
 
                     <h2>{location.place}</h2>
-                    <img
-                        src={location.photo1}
-                        alt={location.place}
-                        style={{ width: "300px", height: "auto" }}
-                    />
+                    {location.photo1 && (
+                        <img
+                            src={location.photo1}
+                            alt={location.place}
+                            style={{ width: "300px", height: "auto" }}
+                            onError={(e) => (e.target.style.display = 'none')}
+                        />
+                    )}
                     <p>{location.description}</p>
-                    <img
-                        src={location.photo2}
-                        alt={location.place}
-                        style={{ width: "300px", height: "auto" }}
-                    />
-                    <img
-                        src={location.photo3}
-                        alt={location.place}
-                        style={{ width: "300px", height: "auto" }}
-                    />
+                    {location.photo2 && (
+                        <img
+                            src={location.photo2}
+                            alt={location.place}
+                            style={{ width: "300px", height: "auto" }}
+                            onError={(e) => (e.target.style.display = 'none')}
+                        />
+                    )}
+                    {location.photo3 && (
+                        <img
+                            src={location.photo3}
+                            alt={location.place}
+                            style={{ width: "300px", height: "auto" }}
+                            onError={(e) => (e.target.style.display = 'none')}
+                        />
+                    )}
                     <p>Created on: {new Date(location.created_at).toLocaleDateString()}</p>
                 </div>
             ) : (

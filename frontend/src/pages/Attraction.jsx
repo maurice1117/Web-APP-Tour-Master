@@ -106,7 +106,7 @@ const Attraction = () => {
           {localSearchData.attractions.map((attraction, index) => (
             <div key={index} className="attraction-block">
               <h4>{attraction.name}</h4>
-              <img src={attraction.images[0]} alt={attraction.name} width="200" />
+              <img src={attraction.images[0]} alt={attraction.name} onError={(e) => (e.target.src = attraction.images[1])} width="200" />
               <button
                 onClick={() => createLocation(attraction.name, index)}
                 disabled={favorites.includes(attraction.name)}

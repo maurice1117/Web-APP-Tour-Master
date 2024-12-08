@@ -99,11 +99,14 @@ const AttractionDetail = () => {
             return (
               <>
                 <p className="detail-text">{firstPart}</p>
-                <img
-                  src={localSearchData.attractions[index].images[0]}
-                  className="detail-image"
-                  alt="Image 1"
-                />
+                {localSearchData.attractions[index].images[0] && (
+                  <img
+                    src={localSearchData.attractions[index].images[0]}
+                    className="detail-image"
+                    alt="Image 1"
+                    onError={(e) => (e.target.style.display = 'none')}
+                  />
+                )}
                 <p className="detail-text">{secondPart}</p>
               </>
             );
@@ -111,14 +114,20 @@ const AttractionDetail = () => {
 
           {/* 兩張並排照片 */}
           <div className="detail-image-group">
-            <img
-              src={localSearchData.attractions[index].images[1]}
-              alt="Image 2"
-            />
-            <img
-              src={localSearchData.attractions[index].images[2]}
-              alt="Image 3"
-            />
+            {localSearchData.attractions[index].images[1] && (
+              <img
+                src={localSearchData.attractions[index].images[1]}
+                alt="Image 2"
+                onError={(e) => (e.target.style.display = 'none')}
+              />
+            )}
+            {localSearchData.attractions[index].images[2] && (
+              <img
+                src={localSearchData.attractions[index].images[2]}
+                alt="Image 3"
+                onError={(e) => (e.target.style.display = 'none')}
+              />
+            )}
           </div>
         </div>
       ) : (
