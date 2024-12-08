@@ -1,6 +1,10 @@
 import { useNavigate, Link } from "react-router-dom";
+import { ImCool } from "react-icons/im";
+import { ImGrin } from "react-icons/im";
+import { ImHistory } from "react-icons/im";
 import "../styles/About.css";
 import travelFriendImage from '../assets/travel_friend.jpg';
+import Jake_the_Dog from '../assets/Jake the Dog.jpg';
 import Bar from "../components/Bar";
 
 function About() {
@@ -12,7 +16,7 @@ function About() {
             <div className="hero-section">
                 <h1>About Us</h1>
                 <div className="hero-image">
-                    <img src={travelFriendImage} alt="Travel Friends" />
+                    <img src={Jake_the_Dog} alt="Travel Friends" />
                 </div>
             </div>
 
@@ -24,17 +28,17 @@ function About() {
             {/* 三個特色 */}
             <div className="features">
                 <div className="feature-item">
-                    <i className="icon icon-price"></i>
-                    <h3>Best price guarantee</h3>
+                    <ImCool size={100} />
+                    <h3>Best Searching Experience</h3>
                     <p>Good Good Good</p>
                 </div>
                 <div className="feature-item">
-                    <i className="icon icon-booking"></i>
-                    <h3>Easy Booking</h3>
+                    <ImGrin size={100} />
+                    <h3>Easy UI</h3>
                     <p>Good Good Good</p>
                 </div>
                 <div className="feature-item">
-                    <i className="icon icon-service"></i>
+                    <ImHistory size={100} />
                     <h3>Customer Service 24h</h3>
                     <p>Good Good Good</p>
                 </div>
@@ -42,50 +46,59 @@ function About() {
 
             {/* 關於我們 */}
             <div className="about-content">
-                <h2>About Travelaja.com</h2>
-                <p>
-                    Best Team Ever
-                </p>
-                <img src="your-image-url.jpg" alt="About Us" />
+                <div className="about-text">
+                    <h2>About Travelaja.com</h2>
+                    <p>
+                        Best team ever.
+                    </p>
+                    <p>
+                        Good good good
+                    </p>
+                </div>
+                <div className="about-image">
+                    <img src={Jake_the_Dog} alt="About Us" />
+                </div>
             </div>
+
 
             {/* 團隊成員 */}
             <div className="team-section">
                 <h2>Our Teams</h2>
-                <p>six talented programmer</p>
+                <p>Six talented programmers</p>
                 <div className="team">
                     <div className="team-member">
-                        <img src="image-url.jpg" alt="Member 1" />
+                        <img src={Jake_the_Dog} alt="Member 1" />
                         <p>高大剛</p>
                         <span>Web Designer</span>
                     </div>
                     <div className="team-member">
-                        <img src="image-url.jpg" alt="Member 2" />
+                        <img src={Jake_the_Dog} alt="Member 2" />
                         <p>林芊妤</p>
                         <span>Marketing Director</span>
                     </div>
                     <div className="team-member">
-                        <img src="image-url.jpg" alt="Member 3" />
+                        <img src={Jake_the_Dog} alt="Member 3" />
                         <p>黃子寰</p>
                         <span>Medical Check</span>
                     </div>
                     <div className="team-member">
-                        <img src="image-url.jpg" alt="Member 4" />
+                        <img src={Jake_the_Dog} alt="Member 4" />
                         <p>湯語蕎</p>
                         <span>Doctor Assistant</span>
                     </div>
                     <div className="team-member">
-                        <img src="image-url.jpg" alt="Member 4" />
+                        <img src={Jake_the_Dog} alt="Member 5" />
                         <p>蕭宥平</p>
                         <span>Doctor Assistant</span>
                     </div>
                     <div className="team-member">
-                        <img src="image-url.jpg" alt="Member 4" />
+                        <img src={Jake_the_Dog} alt="Member 6" />
                         <p>鍾怡欣</p>
                         <span>Doctor Assistant</span>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }

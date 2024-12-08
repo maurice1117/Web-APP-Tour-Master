@@ -4,7 +4,7 @@
 .hero-section {
     position: relative;
     width: 100%;
-    height: 175px; /* 可根據需求調整 */
+    height: 175px; 
     text-align: center;
     overflow: hidden;
   }
@@ -17,11 +17,11 @@
     left: 8%; 
     transform: translate(-50%, -50%); /* 修正偏移 */
     color: white;
-    font-size: 33.18px; /* 調整字體大小 */
+    font-size: 33.18px; 
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 增加字體陰影 */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
     z-index: 2; /* 確保標題在圖片之上 */
   }
   
@@ -33,9 +33,161 @@
   
   /* 圖片樣式 */
   .hero-image img {
-    width: 100%; /* 確保圖片佔滿容器寬度 */
-    height: 100%; /* 確保圖片高度適配容器 */
+    width: 100%; 
+    height: 100%; 
     object-fit: cover; /* 確保圖片不會變形 */
-    filter: brightness(70%); /* 減少亮度，讓文字更清晰 */
+    filter: brightness(70%); /* 減少亮度 */
   }
   
+  /* 父容器 */
+.why-choose-us {
+  text-align: center; 
+  margin: 20px 0; /* 添加上下間距 */
+}
+
+/* 主標題樣式 */
+.why-choose-us h2 {
+  font-size: 28px; 
+  font-weight: bold; 
+  color: #333; 
+  margin-bottom: 10px; 
+}
+
+/* 副標題樣式 */
+.why-choose-us p {
+  font-size: 16px; 
+  color: #666; 
+  margin: 0; /* 去除多餘的間距 */
+}
+
+/* features 整體布局 */
+.features {
+  display: flex; 
+  justify-content: space-around; /* 平均分布 */
+  align-items: center; /* 垂直置中 */
+  margin: 40px 0; /* 上下間距 */
+  text-align: center; /* 文字置中 */
+}
+
+/* 單個 feature-item 的樣式 */
+.feature-item {
+  flex: 1; /* 每個項目平分容器寬度 */
+  max-width: 300px; /* 設置最大寬度，避免項目過寬 */
+  padding: 10px; /* 內部間距 */
+}
+
+/* 標題樣式 */
+.feature-item h3 {
+  font-size: 20px; 
+  color: #333; 
+  margin-bottom: 10px; /* 與描述文字的間距 */
+}
+
+/* 描述文字樣式 */
+.feature-item p {
+  font-size: 14px; 
+  color: #666; 
+  margin: 0; /* 移除多餘的外邊距 */
+}
+
+/* 外層容器樣式 */
+.about-content {
+  display: flex; /* 使用 Flexbox */
+  align-items: flex-start; /* 讓內容頂端對齊 */
+  justify-content: space-between; /* 在左右之間保持適當的間距 */
+  gap: 20px; /* 左右部分之間的間距 */
+  margin: 40px 0; /* 上下間距 */
+  padding: 20px;
+}
+
+/* 左側文本部分 */
+.about-text {
+  flex: 1; /* 左側部分佔據可用寬度 */
+  max-width: 60%; /* 限制最大寬度 */
+}
+
+.about-text h2 {
+  font-size: 24px; 
+  font-weight: bold; 
+  color: #333; 
+  margin-bottom: 20px; 
+}
+
+.about-text p {
+  font-size: 16px; 
+  color: #666; 
+  line-height: 1.6; 
+  margin-bottom: 15px; /* 段落之間的間距 */
+}
+
+/* 右側圖片部分 */
+.about-image {
+  flex: 1; /* 圖片部分佔據可用寬度 */
+  max-width: 40%; /* 限制圖片最大寬度 */
+}
+
+.about-image img {
+  width: 100%; /* 佔滿容器 */
+  height: auto; /* 保持圖片比例 */
+  border-radius: 10px; /* 圓角效果 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
+}
+
+/* 整個團隊區塊 */
+.team-section {
+  text-align: center; /* 置中 */
+  margin: 40px 0; 
+  padding: 0 20px; /* 左右間距 */
+}
+
+.team-section h2 {
+  font-size: 24px; 
+  font-weight: bold; 
+  color: #333; 
+  margin-bottom: 10px; 
+}
+
+.team-section p {
+  font-size: 16px; 
+  color: #666; 
+  margin-bottom: 30px; 
+}
+
+/* 團隊成員容器 */
+.team {
+  display: flex; 
+  flex-wrap: wrap; /* 自動換行 */
+  justify-content: center; /* 居中對齊 */
+  gap: 20px; /* 間距 */
+}
+
+/* 單個成員樣式 */
+.team-member {
+  flex: 1 1 calc(20% - 20px); /* 每個成員佔20%的寬度，減去間距 */
+  max-width: 200px; /* 最大寬度 */
+  text-align: center; 
+  margin-bottom: 20px; 
+}
+
+/* 團隊成員圖片樣式 */
+.team-member img {
+  width: 100%; 
+  height: auto; /* 保持圖片比例 */
+  border-radius: 10px; /* 圓角 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 加陰影 */
+  margin-bottom: 10px;
+}
+
+/* 成員名稱樣式 */
+.team-member p {
+  font-size: 16px; 
+  font-weight: bold; 
+  color: #333; 
+  margin-bottom: 5px; 
+}
+
+/* 成員職位樣式 */
+.team-member span {
+  font-size: 14px; 
+  color: #666;
+}
