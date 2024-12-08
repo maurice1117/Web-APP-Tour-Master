@@ -140,8 +140,8 @@ function Form({ route, method }) {
                 <img
                     src={
                         method === "login"
-                            ? "https://i.postimg.cc/zBsXywLD/iphaank-58409901-170643610603788-9093298758546613071-n.jpg"
-                            : "https://i.postimg.cc/vTcQJhZL/image.jpg"
+                            ? "../../assets/login_img.jpg"
+                            : "../../assets/register_img.jpg"
                     }
                     alt="背景圖片"
                     className="image"

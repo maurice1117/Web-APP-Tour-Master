@@ -45,17 +45,8 @@ async def search_photo(attractions):
         tasks = [search_photo_BING(attraction) for attraction in attractions]
         results = await asyncio.gather(*tasks)
     
-    vaild_results = await asyncio.gather(*[extract_vaild_images(result) for result in results])
-
-    images1 = []
-    images2 = []
-    images3 = []
-    for vaild_images in vaild_results:
-        images1.append(vaild_images[0])
-        images2.append(vaild_images[1])
-        images3.append(vaild_images[2])
-
-    return images1, images2, images3
+    images = await asyncio.gather(*[extract_vaild_images(result) for result in results])
+    return images
 
 
 async def extract_vaild_images(urls):

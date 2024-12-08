@@ -68,12 +68,12 @@ const Home = () => {
         <div className="featured-images">
           <img
             className="liberty-image"
-            src="https://i.postimg.cc/Nftg6kKt/2024-11-22-7-32-11.png"
+            src="../../assets/home_img7.png"
             alt="Statue of Liberty"
           />
           <img
             className="arc-image"
-            src="https://i.postimg.cc/4ykXFzwz/2024-11-22-7-32-22.png"
+            src="../../assets/home_img8.png"
             alt="Arc de Triomphe"
           />
         </div>
@@ -110,7 +110,7 @@ const Home = () => {
         <div className="grid">
           <div className="destination-card">
             <img
-              src="https://i.postimg.cc/J7jGbn4f/2024-11-22-6-14-32.png"
+              src="../../assets/home_img1.png"
               alt="大峽谷國家公園"
             />
             <h3>大峽谷國家公園</h3>
@@ -118,7 +118,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="https://i.postimg.cc/zv47ZG4Z/2024-11-22-6-14-55.png"
+              src="../../assets/home_img2.png"
               alt="峇里島"
             />
             <h3>峇里島</h3>
@@ -126,7 +126,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="https://i.postimg.cc/W3H6g4NF/2024-11-22-6-24-24.png"
+              src="../../assets/home_img3.png"
               alt="釜山觀光列車"
             />
             <h3>釜山觀光列車</h3>
@@ -134,7 +134,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="https://i.postimg.cc/QdvFQW1r/2024-11-22-6-25-25.png"
+              src="../../assets/home_img4.png"
               alt="馬丘比丘"
             />
             <h3>馬丘比丘</h3>
@@ -142,7 +142,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="https://i.postimg.cc/jdz30zqM/HG-272655443.jpg"
+              src="../../assets/home_img5.jpg"
               alt="布達佩斯國會大廈"
             />
             <h3>布達佩斯國會大廈</h3>
@@ -150,7 +150,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="https://i.postimg.cc/FsskNvNw/2024-11-22-6-25-37.png"
+              src="../../assets/home_img6.png"
               alt="倫敦塔橋"
             />
             <h3>倫敦塔橋</h3>

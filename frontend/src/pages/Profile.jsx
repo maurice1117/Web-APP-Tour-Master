@@ -27,7 +27,7 @@ function Profile() {
         if (res.data.avatar) {
           setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
         } else {
-          setAvatarPreview("https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg");
+          setAvatarPreview("../../assets/nohead.jpg");
         }
       })
       .catch((err) => alert(err));

@@ -26,7 +26,7 @@ async def handle_location(request):
 
             # start_time = time.time()
             # from attractions generate images
-            images1, images2, images3 = await searching.search_photo(attractions)
+            images = await searching.search_photo(attractions)
             # print(f"Search images: {time.time() - start_time:.2f}s")
 
             # start_time = time.time()
@@ -35,7 +35,20 @@ async def handle_location(request):
             introductions = await asyncio.gather(*tasks)
             # print(f"Gen. introductions: {time.time() - start_time:.2f}s")
 
-            response_data = {"status": "success", "attractions": attractions, "images1": images1, "images2": images2, "images3": images3,"introductions": introductions}
+            response_data = {
+                "status": "success",
+                "location": location,
+                "attractions": []
+            }
+
+            for i, name in enumerate(attractions):
+                attraction_data = {
+                    "name": name,
+                    "images": images[i],
+                    "introduction": introductions[i]
+                }
+                response_data["attractions"].append(attraction_data)
+
             return JsonResponse(response_data, status=200)
         
         except Exception as e:

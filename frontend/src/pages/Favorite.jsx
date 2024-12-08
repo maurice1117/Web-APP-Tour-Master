@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 import Bar from "../components/Bar";
-import Jake_the_Dog from '../assets/Jake the Dog.jpg';
+import Jake_the_Dog from '../../assets/Jake the Dog.jpg';
 import "../styles/Favorite.css";
 
 function Favorite() {

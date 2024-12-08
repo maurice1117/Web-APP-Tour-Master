@@ -28,10 +28,10 @@ const AttractionDetail = () => {
     const confirmAddToFavorites = window.confirm(`Do you want to add "${attraction}" to your favorite locations?`);
     if (confirmAddToFavorites) {
       setIsSaving(true);
-      const description = localSearchData.introductions[index];
-      const photo1 = localSearchData.images1[index] || "";
-      const photo2 = localSearchData.images2[index] || "";
-      const photo3 = localSearchData.images3[index] || "";
+      const description = localSearchData.attractions[index].introduction;
+      const photo1 = localSearchData.attractions[index].images[0] || "";
+      const photo2 = localSearchData.attractions[index].images[1] || "";
+      const photo3 = localSearchData.attractions[index].images[2] || "";
 
       api
         .post("/api/locations/", { place: attraction, description, photo1, photo2, photo3 })
@@ -84,23 +84,23 @@ const AttractionDetail = () => {
         <div className="detail-container">
           <button
             className="favorite-button"
-            onClick={() => !favorites.includes(localSearchData.attractions[index]) && createLocation(localSearchData.attractions[index])}
-            disabled={favorites.includes(localSearchData.attractions[index]) || isSaving}
+            onClick={() => !favorites.includes(localSearchData.attractions[index].name) && createLocation(localSearchData.attractions[index].name)}
+            disabled={favorites.includes(localSearchData.attractions[index].name) || isSaving}
           >
-            {favorites.includes(localSearchData.attractions[index]) ? '💖 Added' : '🤍 Add to Favorites'}
+            {favorites.includes(localSearchData.attractions[index].name) ? '💖 Added' : '🤍 Add to Favorites'}
           </button>
 
           <h2 className="detail-header">景點介紹</h2>
-          <p className="detail-text">{localSearchData.attractions[index]}</p>
+          <p className="detail-text">{localSearchData.attractions[index].name}</p>
 
           {/* 分割文字 */}
           {(() => {
-            const [firstPart, secondPart] = splitText(localSearchData.introductions[index]);
+            const [firstPart, secondPart] = splitText(localSearchData.attractions[index].introduction);
             return (
               <>
                 <p className="detail-text">{firstPart}</p>
                 <img
-                  src={localSearchData.images1[index]}
+                  src={localSearchData.attractions[index].images[0]}
                   className="detail-image"
                   alt="Image 1"
                 />
@@ -112,11 +112,11 @@ const AttractionDetail = () => {
           {/* 兩張並排照片 */}
           <div className="detail-image-group">
             <img
-              src={localSearchData.images2[index]}
+              src={localSearchData.attractions[index].images[1]}
               alt="Image 2"
             />
             <img
-              src={localSearchData.images3[index]}
+              src={localSearchData.attractions[index].images[2]}
               alt="Image 3"
             />
           </div>

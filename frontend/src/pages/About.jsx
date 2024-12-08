@@ -2,8 +2,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { ImCool } from "react-icons/im";
 import { ImGrin } from "react-icons/im";
 import { ImHistory } from "react-icons/im";
-import travelFriendImage from '../assets/travel_friend.jpg';
-import Jake_the_Dog from '../assets/Jake the Dog.jpg';
+import travelFriendImage from '../../assets/travel_friend.jpg';
+import Jake_the_Dog from '../../assets/Jake the Dog.jpg';
 import Bar from "../components/Bar";
 import "../styles/About.css";
 
