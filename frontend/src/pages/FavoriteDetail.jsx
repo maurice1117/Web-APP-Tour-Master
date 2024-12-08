@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "../styles/FavoriteDetail.css";
 import Bar from "../components/Bar";
 import api from "../api";
 
@@ -59,13 +60,12 @@ function FavoriteDetail() {
                     </button>
 
                     <h2>{location.place}</h2>
-                    <p>{location.description}</p>
-                    <h3>Images:</h3>
                     <img
                         src={location.photo1}
                         alt={location.place}
                         style={{ width: "300px", height: "auto" }}
                     />
+                    <p>{location.description}</p>
                     <img
                         src={location.photo2}
                         alt={location.place}

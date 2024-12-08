@@ -1,0 +1,20 @@
+.favorite-detail button {
+    background-color: rgb(128, 17, 0);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+
+}
+
+.favorite-detail button:hover {
+    background-color: rgb(128, 17, 0);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}

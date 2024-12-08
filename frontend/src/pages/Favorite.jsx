@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 import Bar from "../components/Bar";
+import Jake_the_Dog from '../assets/Jake the Dog.jpg';
 import "../styles/Favorite.css";
 
 function Favorite() {
@@ -48,21 +49,37 @@ function Favorite() {
     return (
         <div>
             <Bar />
-            <h1>Favorite Locations</h1>
+            <img 
+                src={Jake_the_Dog} 
+                alt="Topic-image"
+                className="Topic-image" />
+            <h1 className="Topic-text">Favorite Locations</h1>
+            <p className="Topic-content">There are your favorite location.</p>
+            <p className="Topic-content">Click on the image to get the details.</p>
             <div className="favorite-grid">
                 {locations.map((location) => (
                     <div key={location.id} className="favorite-item">
-                        <h3>{location.place}</h3>
-                        <img
-                            src={location.photo1}
-                            alt={location.place}
-                            style={{ width: "200px", height: "auto" }}
-                        />
-                        <p>Created on: {new Date(location.created_at).toLocaleDateString()}</p>
-                        <button onClick={() => deleteLocation(location.id, location.place)}>Delete</button>
+                        {/* 圖片覆蓋 View More 按鈕 */}
                         <Link to={`/favorite/${location.id}`}>
-                            <button>View More</button>
+                            <img
+                                src={location.photo1}
+                                alt={location.place}
+                                className="favorite-image"
+                            />
                         </Link>
+                        <div className="favorite-content">
+                            <h3 className="favorite-title">{location.place}</h3>
+                            <p className="favorite-date">
+                                Created time: {new Date(location.created_at).toLocaleDateString()}
+                            </p>
+                        </div>
+                        {/* Delete Button 位於右下角 */}
+                        <button
+                            onClick={() => deleteLocation(location.id, location.place)}
+                            className="delete-button"
+                        >
+                            Delete
+                        </button>
                     </div>
                 ))}
             </div>
