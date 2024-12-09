@@ -1,26 +1,40 @@
 .attraction-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 自適應列數 */
   gap: 20px;
+  padding: 20px; /* 增加整體間距 */
 }
 
 .attraction-block {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #e0e0e0; /* 柔和的邊框色 */
+  border-radius: 12px; /* 增加圓角 */
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
+  background-color: #fff; /* 白色背景 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 增加過渡效果 */
+}
+
+.attraction-block:hover {
+  transform: scale(1.05); /* 滑過時放大效果 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 增強陰影效果 */
 }
 
 .attraction-block img {
   width: 100%;
   height: auto;
+  border-radius: 8px; /* 增加圖片圓角 */
+  object-fit: cover; /* 保持圖片比例 */
 }
 
-.attraction-block button {
+*.attraction-block button {
   margin-top: 10px;
   padding: 5px 10px;
   cursor: pointer;
 }
+
+
+
 
 /* Attraction.css */
 h1 {
@@ -28,7 +42,7 @@ h1 {
 }
 
 .view-more-button {
-  background-color: #2e8b57; /* 深綠色背景 */
+  background-color: #28a745; /* 深綠色背景 */
   color: white; /* 白色文字 */
   border: none; /* 無邊框 */
   border-radius: 5px; /* 圓角 */
@@ -39,6 +53,50 @@ h1 {
 }
 
 .view-more-button:hover {
-  background-color: #256d46; /* 當鼠標懸停時顏色變深 */
+  background-color: #1e7e34; /* 當鼠標懸停時顏色變深 */
 }
+
+.button-container {
+  display: flex; /* 將容器設置為 Flex 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  width: 100%; /* 確保父容器寬度足夠 */
+  margin: 20px 0; /* 可選：調整上下外距 */
+}
+.search-again-button {
+  background-color: #007BFF; /* 綠色背景 */
+  color: white; /* 白色文字 */
+  font-size: 16px; /* 調整字體大小 */
+  font-weight: bold; /* 粗體 */
+  padding: 10px 20px; /* 調整按鈕內距 */
+  border: none; /* 移除邊框 */
+  border-radius: 5px; /* 圓角設計 */
+  cursor: pointer; /* 指針樣式 */
+  transition: all 0.3s ease; /* 增加過渡效果 */
+}
+
+.search-again-button:hover {
+  background-color: #0056b3; /* 滑過時背景顏色變化 */
+  transform: scale(1.05); /* 放大效果 */
+}
+
+.search-again-button:active {
+  transform: scale(0.95); /* 按下時的按壓效果 */
+}
+
+
+.loading-container {
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  height: 100px; /* 调整高度以适应需求 */
+  width: 100%; /* 撑满行宽 */
+}
+
+.loading-text {
+  font-size: 18px; /* 字体大小 */
+  color: #555; /* 文字颜色 */
+  font-weight: bold; /* 粗体字 */
+}
+
 

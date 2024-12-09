@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import Bar from "../components/Bar";
 import api from "../api";
 
@@ -12,21 +12,23 @@ const Attraction = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedSearchData = JSON.parse(localStorage.getItem('searchData'));
-    if (storedSearchData && storedSearchData.status === 'success') {
+    const storedSearchData = JSON.parse(localStorage.getItem("searchData"));
+    if (storedSearchData && storedSearchData.status === "success") {
       setLocalSearchData(storedSearchData);
     } else {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate]);
 
   const loadFavorites = () => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
   };
 
   const createLocation = (attraction, index) => {
-    const confirmAddToFavorites = window.confirm(`Do you want to add "${attraction}" to your favorite locations?`);
+    const confirmAddToFavorites = window.confirm(
+      `Do you want to add "${attraction}" to your favorite locations?`
+    );
     if (confirmAddToFavorites) {
       const place = attraction;
       const description = localSearchData.attractions[index].introduction;
@@ -41,35 +43,37 @@ const Attraction = () => {
             alert(`${attraction} added to favorites!`);
             const updatedFavorites = [...favorites, attraction];
             setFavorites(updatedFavorites);
-            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
           } else {
-            alert('Failed to create location.');
+            alert("Failed to create location.");
           }
         })
         .catch((err) => {
-          alert('Error creating location');
-          console.error('Error details:', err.response ? err.response.data : err);
+          alert("Error creating location");
+          console.error("Error details:", err.response ? err.response.data : err);
         });
     }
   };
 
-  // send same request to search again
   const searchAgain = async () => {
     setIsLoading(true);
     try {
-      const result = await axios.post('http://127.0.0.1:8000/search/location', {
-        location: localSearchData.location,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
+      const result = await axios.post(
+        "http://127.0.0.1:8000/search/location",
+        {
+          location: localSearchData.location,
         },
-      });
-
+        {
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }
+      );
       console.log(result.data);
-      localStorage.setItem('searchData', JSON.stringify(result.data));
+      localStorage.setItem("searchData", JSON.stringify(result.data));
       window.location.reload();
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     } finally {
       setIsLoading(false);
     }
@@ -77,44 +81,57 @@ const Attraction = () => {
 
   useEffect(() => {
     const handleStorageChange = () => {
-      const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
       setFavorites(storedFavorites);
     };
 
-    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener("storage", handleStorageChange);
 
     loadFavorites();
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
 
   return (
     <div>
       <Bar />
-      
+
+      {isLoading && (
+        <div className="loading-container">
+          <p className="loading-text">Loading...</p>
+        </div>
+      )}
+
       {localSearchData && localSearchData.location && (
         <h1 className="search-title">{localSearchData.location} 附近的景點</h1>
       )}
-      <button onClick={searchAgain}>
-        🔄
+      <div className="button-container">
+      <button onClick={searchAgain} className="search-again-button">
+        🔄 重新搜尋
       </button>
-      {isLoading && <p>Loading...</p>}
-      {localSearchData && localSearchData.status === 'success' && (
+      </div>
+      {localSearchData && localSearchData.status === "success" && (
         <div className="attraction-grid">
           {localSearchData.attractions.map((attraction, index) => (
             <div key={index} className="attraction-block">
               <h4>{attraction.name}</h4>
-              <img src={attraction.images[0]} alt={attraction.name} onError={(e) => (e.target.src = attraction.images[1])} width="200" />
+              <img
+                src={attraction.images[0]}
+                alt={attraction.name}
+                onError={(e) => (e.target.src = attraction.images[1])}
+                width="200"
+              />
               <button
                 onClick={() => createLocation(attraction.name, index)}
                 disabled={favorites.includes(attraction.name)}
+                className={`favorite-button ${favorites.includes(attraction.name) ? "active" : ""}`}
               >
-                {favorites.includes(attraction.name) ? '💖' : '🤍'}
+                {favorites.includes(attraction.name) ? "💖" : "🤍"}
               </button>
               <Link to={`/attraction/${index}`}>
-              <button className="view-more-button">View More</button>
+                <button className="view-more-button">View More</button>
               </Link>
             </div>
           ))}
@@ -125,3 +142,5 @@ const Attraction = () => {
 };
 
 export default Attraction;
+
+
