@@ -57,7 +57,14 @@ const AttractionDetail = () => {
 
   const splitText = (text) => {
     if (!text) return ["", ""];
-    const sentences = text.split(/(?<=[。！？\.\!\?])/g); // 按標點分割
+    const sentences = text.split(/([。！？\.\!\?])/g).reduce((acc, cur, index) => {
+      if (index % 2 === 0) {
+          acc.push(cur);
+      } else {
+          acc[acc.length - 1] += cur;
+      }
+      return acc;
+    }, []);
     if (sentences.length <= 1) return [text, ""];
 
     let firstPart = "";

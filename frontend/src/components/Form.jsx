@@ -19,8 +19,19 @@ function Form({ route, method }) {
     const name = method === "login" ? "登入" : "註冊";
 
     const handleSubmit = async (e) => {
-        setLoading(true);
         e.preventDefault();
+
+        const isFormValid =
+            username &&
+            password &&
+            (method === "login" || (email && confirmPassword && password === confirmPassword));
+
+        if (!isFormValid) {
+            alert("請確實輸入所有必要資訊！");
+            return;
+        }
+
+        setLoading(true);
 
         if (method === "register" && password !== confirmPassword) {
             alert("密碼和確認密碼不一致！");
@@ -61,8 +72,6 @@ function Form({ route, method }) {
             setLoading(false);
         }
     };
-
-    const isFormValid = username && password && (method === "login" || (email && confirmPassword));
 
     return (
         <div className={`container ${method}`}>
@@ -118,7 +127,7 @@ function Form({ route, method }) {
                         )}
                     </div>
                     {loading && <LoadingIndicator />}
-                    <button className="button" type="submit" disabled={!isFormValid}>
+                    <button className="button" type="submit">
                         {name}
                     </button>
                     <p className="footer-text">
