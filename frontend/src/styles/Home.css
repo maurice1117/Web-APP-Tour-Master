@@ -10,7 +10,7 @@ body {
   }
   
   .header {
-    background-image: url("https://i.postimg.cc/QdKtdxPY/2024-11-22-6-35-23.png");
+    background-image: url("../../assets/home_img.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -189,4 +189,31 @@ body {
   }
   
    
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .featured-section {
+      grid-template-columns: 1fr;
+    }
   
+    .featured-images {
+      justify-content: center; /* 圖片居中 */
+    }
+  
+    .featured-content {
+      text-align: center; /* 文字置中 */
+    }
+    .featured-images img {
+      width: 150px; /* 縮小圖片寬度 */
+    }
+  }
+    
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .search-bar {
+      flex-direction: column;
+    }
+  }

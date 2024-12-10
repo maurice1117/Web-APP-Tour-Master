@@ -46,18 +46,6 @@
   align-items: center;
   grid-template-columns: repeat(4,1fr); /* 自適應列數 */
 }
-@media (max-width: 768px) {
-  .other-attraction-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-  
-@media (max-width: 480px) {
-  .other-attraction-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
 
 /* Attraction.css */
 h1 {
@@ -123,3 +111,14 @@ h1 {
 }
 
 
+@media (max-width: 768px) {
+  .attraction-grid, .other-attraction-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+  
+@media (max-width: 480px) {
+  .attraction-grid, .other-attraction-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

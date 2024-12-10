@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+.bar-logo {
+  text-decoration: none;
+  color: inherit;
+}
   
   .bar h1 {
     font-size: 27px;
@@ -31,4 +35,35 @@
   
   .bar-links a:hover {
     color: green;
+  }
+
+  .hamburger {
+    display: none;
+    color: black;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 640px) {
+    .bar-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 55px;
+      right: 0px;
+      background-color: white;
+      padding: 10px;
+      z-index: 10;
+      width:100%;
+    }
+  
+    .bar-links.open {
+      display: flex;
+    }
+  
+    .hamburger {
+      display: flex;
+    }
   }
