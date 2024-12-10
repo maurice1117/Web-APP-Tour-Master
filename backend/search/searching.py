@@ -24,7 +24,7 @@ async def search_photo_GOOGLE(attraction):
 
 async def search_photo_BING(attraction):
     params = {
-        "q": attraction,
+        "q": f"{attraction} 景點",
         'mkt': 'zn-TW',
         'count': 10
     }

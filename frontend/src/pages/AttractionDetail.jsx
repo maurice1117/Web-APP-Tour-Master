@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Bar from "../components/Bar";
 import "../styles/detail.css";
 import "../styles/AttractionDetail.css";
@@ -90,8 +91,7 @@ const AttractionDetail = () => {
             {favorites.includes(localSearchData.attractions[index].name) ? '💖 Added' : '🤍 Add to Favorites'}
           </button>
 
-          <h2 className="detail-header">景點介紹</h2>
-          <p className="detail-text">{localSearchData.attractions[index].name}</p>
+          <h2 className="detail-header">{localSearchData.attractions[index].name}</h2>
 
           {/* 分割文字 */}
           {(() => {
@@ -133,6 +133,45 @@ const AttractionDetail = () => {
       ) : (
         <p>Loading...</p>
       )}
+      
+      {/* show other attraction */}
+      <div className="other-attraction-continer">
+        <h3 className="detail-header">周邊景點</h3>
+        {localSearchData && localSearchData.status === "success" && (
+          <div className="other-attraction-grid">
+            {(() => {
+              const startId = (Number(index)+1) % 9;
+              const endId = (Number(index)+5) % 9;
+              
+              let attractions_show_aside;
+
+              if(startId < endId){
+                attractions_show_aside = localSearchData.attractions.slice(startId, endId);
+              }
+              else{
+                attractions_show_aside = [
+                  ...localSearchData.attractions.slice(startId, 9),
+                  ...localSearchData.attractions.slice(0, endId),
+                ];
+              }
+              return attractions_show_aside.map((attraction, idx) => (
+                <div key={idx} className="attraction-block">
+                  <h4>{attraction.name}</h4>
+                  <img
+                    src={attraction.images[0]}
+                    alt={attraction.name}
+                    onError={(e) => (e.target.src = attraction.images[1])}
+                  />
+                  <Link to={`/attraction/${(Number(index) + 1 + Number(idx)) % 9}`}>
+                    <button className="view-more-button">View More</button>
+                  </Link>
+                </div>
+              ));
+            })()}
+          </div>
+        )}
+
+      </div>
     </div>
   );
 };
