@@ -14,25 +14,31 @@ const Home = () => {
   };
 
   const handleSearch = async () => {
+    if (!location.trim()) {
+        alert("請輸入地點名稱！");
+        return;
+    }
+
     setIsLoading(true);
     try {
-      const result = await axios.post('http://127.0.0.1:8000/search/location', {
-        location: location,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+        const result = await axios.post('http://127.0.0.1:8000/search/location', {
+            location: location.trim(),
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-      console.log(result.data);
-      localStorage.setItem('searchData', JSON.stringify(result.data));
-      navigate('/attraction');
+        console.log(result.data);
+        localStorage.setItem('searchData', JSON.stringify(result.data));
+        navigate('/attraction');
     } catch (error) {
-      console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
-  };
+};
+
 
   return (
     <div className="app">

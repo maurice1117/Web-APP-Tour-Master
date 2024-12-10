@@ -2,7 +2,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { ImCool } from "react-icons/im";
 import { ImGrin } from "react-icons/im";
 import { ImHistory } from "react-icons/im";
-import travelFriendImage from '../../assets/travel_friend.jpg';
+import man_sea from '../../assets/man sea.jpg';
+import solo_flower from '../../assets/solo flower.jpg';
 import Jake_the_Dog from '../../assets/Jake the Dog.jpg';
 import Bar from "../components/Bar";
 import "../styles/About.css";
@@ -16,7 +17,7 @@ function About() {
             <div className="hero-section">
                 <h1>About Us</h1>
                 <div className="hero-image">
-                    <img src={Jake_the_Dog} alt="Travel Friends" />
+                    <img src={solo_flower} alt="solo_flower" />
                 </div>
             </div>
 
@@ -56,7 +57,7 @@ function About() {
                     </p>
                 </div>
                 <div className="about-image">
-                    <img src={Jake_the_Dog} alt="About Us" />
+                    <img src={man_sea} alt="man_sea" />
                 </div>
             </div>
 
