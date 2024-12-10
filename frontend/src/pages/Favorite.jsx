@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import api from "../api";
 import Bar from "../components/Bar";
 import Jake_the_Dog from '../../assets/Jake the Dog.jpg';
+import car_drive from '../../assets/car_drive.jpg';
 import "../styles/Favorite.css";
 
 function Favorite() {
@@ -50,7 +51,7 @@ function Favorite() {
         <div>
             <Bar />
             <img 
-                src={Jake_the_Dog} 
+                src={car_drive} 
                 alt="Topic-image"
                 className="Topic-image" />
             <h1 className="Topic-text">Favorite Locations</h1>

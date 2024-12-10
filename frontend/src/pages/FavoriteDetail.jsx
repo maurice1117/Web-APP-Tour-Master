@@ -58,7 +58,7 @@ function FavoriteDetail() {
                     <button onClick={() => deleteLocationDetail(location.id, location.place)}>
                         Delete Location
                     </button>
-
+                    
                     <h2>{location.place}</h2>
                     {location.photo1 && (
                         <img
