@@ -4,7 +4,9 @@
     align-items: center;
     gap: 30px;
     padding: 80px;
-    /* margin: 20%; 待調整 */
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
     background-color: #f9f9f9; /* 背景顏色 */
     border-radius: 12px; /* 圓角邊框 */
     border: 1px solid #e0e0e0; /* 邊框顏色 */
@@ -21,7 +23,7 @@
   .favorite-detail p {
     font-size: 18px;
     color: #555; /* 中灰色文字 */
-    line-height: 1.5;
+    line-height: 2;
     text-align: center;
   }
   

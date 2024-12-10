@@ -31,17 +31,17 @@ function About() {
                 <div className="feature-item">
                     <ImCool size={100} />
                     <h3>Best Searching Experience</h3>
-                    <p>Good Good Good</p>
+                    <p>The best search engine</p>
                 </div>
                 <div className="feature-item">
                     <ImGrin size={100} />
-                    <h3>Easy UI</h3>
-                    <p>Good Good Good</p>
+                    <h3>Exquisite UI</h3>
+                    <p>UI is like an insane art work</p>
                 </div>
                 <div className="feature-item">
                     <ImHistory size={100} />
                     <h3>Customer Service 24h</h3>
-                    <p>Good Good Good</p>
+                    <p>Programmers are friendly</p>
                 </div>
             </div>
 
@@ -50,10 +50,10 @@ function About() {
                 <div className="about-text">
                     <h2>About Travelaja.com</h2>
                     <p>
-                        Best team ever.
+                        Never work with a team like this. Everyone finished their jobs independently. Amazing team. 
                     </p>
                     <p>
-                        Good good good
+                        Love you guys.
                     </p>
                 </div>
                 <div className="about-image">
@@ -70,32 +70,32 @@ function About() {
                     <div className="team-member">
                         <img src={Jake_the_Dog} alt="Member 1" />
                         <p>高大剛</p>
-                        <span>Web Designer</span>
+                        <span>Full Stack developer</span>
                     </div>
                     <div className="team-member">
                         <img src={Jake_the_Dog} alt="Member 2" />
                         <p>林芊妤</p>
-                        <span>Marketing Director</span>
+                        <span>Chief Technology Officer</span>
                     </div>
                     <div className="team-member">
                         <img src={Jake_the_Dog} alt="Member 3" />
                         <p>黃子寰</p>
-                        <span>Medical Check</span>
+                        <span>PM & CSS Designer</span>
                     </div>
                     <div className="team-member">
                         <img src={Jake_the_Dog} alt="Member 4" />
                         <p>湯語蕎</p>
-                        <span>Doctor Assistant</span>
+                        <span>Frontend Developer</span>
                     </div>
                     <div className="team-member">
                         <img src={Jake_the_Dog} alt="Member 5" />
                         <p>蕭宥平</p>
-                        <span>Doctor Assistant</span>
+                        <span>Frontend Developer</span>
                     </div>
                     <div className="team-member">
                         <img src={Jake_the_Dog} alt="Member 6" />
                         <p>鍾怡欣</p>
-                        <span>Doctor Assistant</span>
+                        <span>Frontend Developer</span>
                     </div>
                 </div>
             </div>
