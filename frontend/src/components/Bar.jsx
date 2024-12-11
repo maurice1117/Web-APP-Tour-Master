@@ -7,7 +7,7 @@ const Bar = () => {
     return <div className="bar">
             <div className="bar-content">
                 <a href="/" className="bar-logo">
-                    <h1>travelaja</h1>
+                    <h1>Tour Master</h1>
                 </a>
                 <div className={`bar-links ${menuOpen ? "open" : ""}`}>
                     <a href="/">首頁</a>

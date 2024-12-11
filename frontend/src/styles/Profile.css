@@ -2,16 +2,18 @@
   display: flex;
   justify-content: space-between;
   max-width: 900px;
-  margin-left: 100px;
   padding: 70px;
   padding-top: 10px;
   gap: 30px;
   font-family: Arial, sans-serif;
   position: relative;
+  flex-wrap: wrap; /* 讓子元素在小屏幕時換行 */
+  justify-content: center; /* 保持內容居中 */
+  margin: 0 auto;
 }
 
 .profile-left {
-  flex: 3;
+  flex: 1;
   text-align: left;
 }
 
@@ -59,6 +61,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
 .profile-left button {
@@ -83,9 +86,11 @@
 
 .profile-right {
   flex: 1;
+  display: flex;
   text-align: center;
-  padding-left: 150px;
-  padding-right: 70px;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .avatar-img {
@@ -94,7 +99,6 @@
   border-radius: 50%;
   margin-top: 90px;
   margin-bottom: 10px;
-  margin-left: 35px;
   object-fit: cover;
 }
 
@@ -102,11 +106,12 @@
   color: #000000;
   font-size: 25px;
   margin-top: 0px;
-  margin-left: 35px;
 }
 
 .profile-right input[type="file"] {
+  width: 100%; 
   margin-bottom: 10px;
+  max-width: 250px;
 }
 
 .profile-right form {
@@ -114,6 +119,9 @@
   text-align: center; 
   margin-left: 0px;
   padding-top: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-right button {
@@ -123,6 +131,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  max-width: 200px;
 }
 
 .profile-right button:disabled {
@@ -150,4 +159,28 @@
 
 .message.error {
   color: #f44336;
+}
+
+@media (max-width: 640px) {
+  .profile-container {
+    flex-direction: column; /* 改為垂直排列 */
+    align-items: center; /* 保證內容水平居中 */
+    padding: 30px;
+  }
+
+  .profile-left, .profile-right {
+    flex: 1; /* 讓兩個區塊寬度相同 */
+    width: 100%; /* 填滿父容器 */
+    padding: 20px; /* 添加適當內邊距 */
+    box-sizing: border-box; /* 確保內邊距不影響寬度 */
+  }
+
+  .profile-right {
+    padding-top: 0; /* 調整 padding，避免過大間距 */
+  }
+
+  .avatar-img {
+    width: 150px;
+    height: 150px;
+  }
 }

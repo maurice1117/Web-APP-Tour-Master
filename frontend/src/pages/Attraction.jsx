@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Bar from "../components/Bar";
 import api from "../api";
+import "../styles/AttractionDetail.css";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 const Attraction = () => {
   const [localSearchData, setLocalSearchData] = useState(null);
@@ -59,7 +61,7 @@ const Attraction = () => {
     setIsLoading(true);
     try {
       const result = await axios.post(
-        "http://127.0.0.1:8000/search/location",
+        `${import.meta.env.VITE_API_URL}/search/location`,
         {
           location: localSearchData.location,
         },
@@ -98,12 +100,6 @@ const Attraction = () => {
     <div>
       <Bar />
 
-      {isLoading && (
-        <div className="loading-container">
-          <p className="loading-text">Loading...</p>
-        </div>
-      )}
-
       {localSearchData && localSearchData.location && (
         <h1 className="search-title">{localSearchData.location} 附近的景點</h1>
       )}
@@ -112,6 +108,13 @@ const Attraction = () => {
         🔄 重新搜尋
       </button>
       </div>
+        
+      {isLoading && (
+        <div className="loading-container">
+          {isLoading && <LoadingIndicator />}
+        </div>
+      )}
+
       {localSearchData && localSearchData.status === "success" && (
         <div className="attraction-grid">
           {localSearchData.attractions.map((attraction, index) => (

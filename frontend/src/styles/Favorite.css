@@ -75,3 +75,23 @@
 .delete-button:hover {
   background-color: rgb(219, 34, 6);
 }
+
+@media (max-width: 1024px) {
+  .delete-button {
+    position: static;
+    display: block;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .favorite-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+  
+@media (max-width: 480px) {
+  .favorite-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

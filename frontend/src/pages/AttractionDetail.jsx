@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Bar from "../components/Bar";
 import "../styles/detail.css";
 import "../styles/AttractionDetail.css";
@@ -8,6 +9,7 @@ import api from '../api';
 
 const AttractionDetail = () => {
   const { index } = useParams();
+  const { pathname } = useLocation();
   const [localSearchData, setLocalSearchData] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
@@ -24,6 +26,10 @@ const AttractionDetail = () => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
   }, [navigate]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const createLocation = (attraction) => {
     const confirmAddToFavorites = window.confirm(`Do you want to add "${attraction}" to your favorite locations?`);
@@ -142,7 +148,7 @@ const AttractionDetail = () => {
       )}
       
       {/* show other attraction */}
-      <div className="other-attraction-continer">
+      <div className="other-attraction-container">
         <h3 className="detail-header">周邊景點</h3>
         {localSearchData && localSearchData.status === "success" && (
           <div className="other-attraction-grid">

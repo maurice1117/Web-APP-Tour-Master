@@ -48,7 +48,7 @@ function About() {
             {/* 關於我們 */}
             <div className="about-content">
                 <div className="about-text">
-                    <h2>About Travelaja.com</h2>
+                    <h2>About Tour Master</h2>
                     <p>
                         Never work with a team like this. Everyone finished their jobs independently. Amazing team. 
                     </p>

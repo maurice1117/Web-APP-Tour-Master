@@ -14,8 +14,8 @@
 .hero-section h1 {
     position: absolute;
     top: 65%; 
-    left: 8%; 
-    transform: translate(-50%, -50%); /* 修正偏移 */
+    left: 5%; 
+    transform: translateY(-50%); /* 修正偏移 */
     color: white;
     font-size: 33.18px; 
     font-family: 'Poppins';
@@ -124,10 +124,13 @@
 .about-image {
   flex: 1; /* 圖片部分佔據可用寬度 */
   max-width: 40%; /* 限制圖片最大寬度 */
+  display: flex; /* 啟用 Flexbox */
+  justify-content: center; /* 水平置中 */
+  align-items: center; /* 垂直置中 */
 }
 
 .about-image img {
-  width: 100%; /* 佔滿容器 */
+  width: 80%; /* 佔滿容器 */
   height: auto; /* 保持圖片比例 */
   border-radius: 10px; /* 圓角效果 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
@@ -155,10 +158,10 @@
 
 /* 團隊成員容器 */
 .team {
-  display: flex; 
-  flex-wrap: wrap; /* 自動換行 */
+  display: grid; 
   justify-content: center; /* 居中對齊 */
   gap: 20px; /* 間距 */
+  grid-template-columns: repeat(6, 1fr);
 }
 
 /* 單個成員樣式 */
@@ -190,4 +193,33 @@
 .team-member span {
   font-size: 14px; 
   color: #666;
+}
+
+@media screen and (max-width: 720px) {
+  .team {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .features {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+  .about-image {
+    max-width: 50%;
+  }
+
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

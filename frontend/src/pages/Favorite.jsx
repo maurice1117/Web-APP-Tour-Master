@@ -63,7 +63,7 @@ function Favorite() {
                         {/* 圖片覆蓋 View More 按鈕 */}
                         <Link to={`/favorite/${location.id}`}>
                             <img
-                                src={location.photo1}
+                                src={location.photo3}
                                 alt={location.place}
                                 className="favorite-image"
                             />

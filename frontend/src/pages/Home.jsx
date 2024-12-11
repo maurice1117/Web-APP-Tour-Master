@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Bar from "../components/Bar";
 import "../styles/Home.css"; // 引入 Home.css
+import LoadingIndicator from "../components/LoadingIndicator";
 
 const Home = () => {
   const [location, setLocation] = useState('');
@@ -21,7 +22,7 @@ const Home = () => {
 
     setIsLoading(true);
     try {
-        const result = await axios.post('http://127.0.0.1:8000/search/location', {
+        const result = await axios.post(`${import.meta.env.VITE_API_URL}/search/location`, {
             location: location.trim(),
         }, {
             headers: {
@@ -65,7 +66,9 @@ const Home = () => {
               <span className="icon-search">🔍</span> 搜尋附近景點
             </button>
           </div>
-          {isLoading && <p>Loading...</p>}
+          <div className="loading-container">
+            {isLoading && <LoadingIndicator />}
+          </div>
         </div>
       </header>
 

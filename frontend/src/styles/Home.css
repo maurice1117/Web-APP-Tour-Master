@@ -15,7 +15,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     color: white;
-    padding: 150px 20px;
+    padding: 100px 20px;
   }
   
   .navbar {
@@ -216,4 +216,20 @@ body {
     .search-bar {
       flex-direction: column;
     }
+  }
+
+  .hero-content {
+    position: relative;
+  }
+  
+  .loading-container {
+    height: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loading-container.hidden {
+    visibility: hidden; /* 在未加載時隱藏，但保留空間 */
   }
