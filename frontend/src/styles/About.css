@@ -170,6 +170,7 @@
   max-width: 200px; /* 最大寬度 */
   text-align: center; 
   margin-bottom: 20px; 
+  perspective: 1000px; /* 添加透視效果 */
 }
 
 /* 團隊成員圖片樣式 */
@@ -177,8 +178,17 @@
   width: 100%; 
   height: auto; /* 保持圖片比例 */
   border-radius: 10px; /* 圓角 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 加陰影 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 加陰影 */
   margin-bottom: 10px;
+  /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d; /* 保持3D效果 */
+}
+
+.team-member img:hover {
+  /* transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  */
+  transform: rotateY(180deg); /* 圖片翻轉 */
 }
 
 /* 成員名稱樣式 */

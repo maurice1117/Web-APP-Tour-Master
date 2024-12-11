@@ -78,7 +78,7 @@ function Form({ route, method }) {
             {/* 左側表單區域 */}
             <form onSubmit={handleSubmit}>
                 <div className="left-section">
-                    <h1 className="name">Travling!</h1>
+                    <h1 className="name">Traveling!</h1>
                     <h2 className="title">{name}</h2>
                     <div className="input-container">
                         <input

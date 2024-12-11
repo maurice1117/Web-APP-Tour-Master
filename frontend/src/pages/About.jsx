@@ -4,7 +4,12 @@ import { ImGrin } from "react-icons/im";
 import { ImHistory } from "react-icons/im";
 import man_sea from '../../assets/man sea.jpg';
 import solo_flower from '../../assets/solo flower.jpg';
-import Jake_the_Dog from '../../assets/Jake the Dog.jpg';
+import KAO from '../../assets/大剛.jpg';
+import LIN from '../../assets/林芊妤.jpg';
+import TANG from '../../assets/湯語蕎.jpg';
+import HUANG from '../../assets/黃子寰.jpg';
+import XIAO from '../../assets/蕭宥平.jpg';
+import Anita from '../../assets/Anita.jpg';
 import Bar from "../components/Bar";
 import "../styles/About.css";
 
@@ -68,32 +73,32 @@ function About() {
                 <p>Six talented programmers</p>
                 <div className="team">
                     <div className="team-member">
-                        <img src={Jake_the_Dog} alt="Member 1" />
+                        <img src={KAO} alt="Member 1" />
                         <p>高大剛</p>
                         <span>Full Stack developer</span>
                     </div>
                     <div className="team-member">
-                        <img src={Jake_the_Dog} alt="Member 2" />
+                        <img src={LIN} alt="Member 2" />
                         <p>林芊妤</p>
                         <span>Chief Technology Officer</span>
                     </div>
                     <div className="team-member">
-                        <img src={Jake_the_Dog} alt="Member 3" />
+                        <img src={HUANG} alt="Member 3" />
                         <p>黃子寰</p>
                         <span>PM & CSS Designer</span>
                     </div>
                     <div className="team-member">
-                        <img src={Jake_the_Dog} alt="Member 4" />
+                        <img src={TANG} alt="Member 4" />
                         <p>湯語蕎</p>
                         <span>Frontend Developer</span>
                     </div>
                     <div className="team-member">
-                        <img src={Jake_the_Dog} alt="Member 5" />
+                        <img src={XIAO} alt="Member 5" />
                         <p>蕭宥平</p>
                         <span>Frontend Developer</span>
                     </div>
                     <div className="team-member">
-                        <img src={Jake_the_Dog} alt="Member 6" />
+                        <img src={Anita} alt="Member 6" />
                         <p>鍾怡欣</p>
                         <span>Frontend Developer</span>
                     </div>
