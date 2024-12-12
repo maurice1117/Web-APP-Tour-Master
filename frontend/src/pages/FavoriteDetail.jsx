@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/FavoriteDetail.css";
 import "../styles/AttractionDetail.css";
-import "../styles/Detail.css";
+import "../styles/detail.css";
 import Bar from "../components/Bar";
 import api from "../api";
 

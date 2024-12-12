@@ -27,7 +27,7 @@ function Profile() {
         if (res.data.avatar) {
           setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
         } else {
-          setAvatarPreview("../../assets/nohead.jpg");
+          setAvatarPreview("/assets/nohead.jpg");
         }
       })
       .catch((err) => alert(err));

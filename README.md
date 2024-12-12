@@ -1,33 +1,33 @@
-# Web-APP-Tour-Master
+# TourMaster
+基於React.js與Django的旅遊景點推薦網站。  
+可根據用戶輸入的地點，以ChatGPT API生成多個推薦的周邊景點，並以Bing Search/Google Search API搜尋景點照片。
 
-## Documents
-Figma: https://www.figma.com/design/tme6hVJkQF8VX1knz9TzFi/travelaja-(Community)?node-id=4-61&node-type=canvas
-
-計劃書: https://docs.google.com/document/d/1o4Fp87TqES_GOmm19LGpUfnczWpieiBnfffte0SYhbU/edit?usp=sharing
-
----
-
-## 終端機執行指令
-
-#### 前端終端機
+## 運行
+### 前端
+#### 安裝套件
 ```
-- cd Web-APP-Tour-Master/frontend
-首次執行：
-    - npm install
-    - npm run dev
+npm install
 ```
 
-#### 後端終端機
+#### 啟動
 ```
-- cd Web-APP-Tour-Master/backend
-首次執行：
-    - pip install -r requirements.txt
-    - python manage.py migrate
-- python manage.py runserver
-    - 這裡會出現url，沒意外的話應該長'http://127.0.0.1:8000'
+npm run dev
 ```
 
-## 後端/資料庫管理
+### 後端
+#### 安裝套件
+```
+pip install -r requirements.txt
+```
+
+#### 啟動
+```
+python manage.py runserver
+```
+port預設為8000，若有更動需至`frontend/.env`修改URL路徑
+
+### 後端資料庫
+程式碼中已包含了測試資料庫，可直接進行存取
 
 #### Superuser
 ```
@@ -35,8 +35,31 @@ Figma: https://www.figma.com/design/tme6hVJkQF8VX1knz9TzFi/travelaja-(Community)
 - Password: admin
 ```
 
+#### 初始化資料庫
+移除舊資料庫及用戶頭貼
+```
+rm db.sqlite3
+rm -f media/avatars
+```
+重新建立資料庫
+```
+python manage.py migrate
+```
+設定Superuser
+```
+python manage.py createsuperuser
+```
 
----
+## 伺服器部署
+本專案支援在docker進行部署
+```
+docker-compose up --build
+```
+
+## API KEY相關設定
+由於後端串接了ChatGPT API及Bing Search/Google Search API，因此需自行至`backend/config.py`設置API KEY，也可在此處設定要使用Bing還是Google進行圖片搜尋  
+
+(Bing的圖片品質較佳但需付費，Google則每天皆有免費額度)
 
 ## 註冊/登入/登出說明
 - 當登入時，系統會生成：一個 access token（30分鐘有效）、一個 refresh token（1天有效）

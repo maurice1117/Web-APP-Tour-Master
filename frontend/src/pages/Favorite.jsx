@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 import Bar from "../components/Bar";
-import car_drive from '../../assets/car_drive.jpg';
+import car_drive from '/assets/car_drive.jpg';
 import "../styles/Favorite.css";
 
 function Favorite() {
@@ -65,7 +65,7 @@ function Favorite() {
                                 src={location.photo1}
                                 alt={location.place}
                                 className="favorite-image"
-                                onError={(e) => (e.target.src = location.photo2 || location.photo3 || "../../assets/car_drive.jpg")}
+                                onError={(e) => (e.target.src = location.photo2 || location.photo3 || "/assets/car_drive.jpg")}
                             />
                         </Link>
                         <div className="favorite-content">

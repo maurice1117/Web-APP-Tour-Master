@@ -77,12 +77,12 @@ const Home = () => {
         <div className="featured-images">
           <img
             className="liberty-image"
-            src="../../assets/home_img7.png"
+            src="/assets/home_img7.png"
             alt="Statue of Liberty"
           />
           <img
             className="arc-image"
-            src="../../assets/home_img8.png"
+            src="/assets/home_img8.png"
             alt="Arc de Triomphe"
           />
         </div>
@@ -119,7 +119,7 @@ const Home = () => {
         <div className="grid">
           <div className="destination-card">
             <img
-              src="../../assets/home_img1.png"
+              src="/assets/home_img1.png"
               alt="大峽谷國家公園"
             />
             <h3>大峽谷國家公園</h3>
@@ -127,7 +127,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="../../assets/home_img2.png"
+              src="/assets/home_img2.png"
               alt="峇里島"
             />
             <h3>峇里島</h3>
@@ -135,7 +135,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="../../assets/home_img3.png"
+              src="/assets/home_img3.png"
               alt="釜山觀光列車"
             />
             <h3>釜山觀光列車</h3>
@@ -143,7 +143,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="../../assets/home_img4.png"
+              src="/assets/home_img4.png"
               alt="馬丘比丘"
             />
             <h3>馬丘比丘</h3>
@@ -151,7 +151,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="../../assets/home_img5.jpg"
+              src="/assets/home_img5.jpg"
               alt="布達佩斯國會大廈"
             />
             <h3>布達佩斯國會大廈</h3>
@@ -159,7 +159,7 @@ const Home = () => {
           </div>
           <div className="destination-card">
             <img
-              src="../../assets/home_img6.png"
+              src="/assets/home_img6.png"
               alt="倫敦塔橋"
             />
             <h3>倫敦塔橋</h3>
