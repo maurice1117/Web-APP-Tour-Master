@@ -43,6 +43,8 @@
     display: block;
     margin: 30px auto;
     height: 360px;
+    max-width: 100%;
+    object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -75,8 +77,8 @@
   }
   
   .favorite-button {
-    margin: 20px auto;
-    display: inline-block;
+    display: block;
+    margin-left: auto;
     padding: 12px 25px;
     font-size: 18px;
     cursor: pointer;
@@ -94,6 +96,30 @@
   }
   
   .favorite-button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .back-button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    background: linear-gradient(to right, #f77948, #f71212);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background: linear-gradient(to right, #f71212, #b30d0d);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .back-button:disabled {
     background-color: #ddd;
     cursor: not-allowed;
     box-shadow: none;

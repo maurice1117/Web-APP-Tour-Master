@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/FavoriteDetail.css";
 import "../styles/AttractionDetail.css";
+import "../styles/Detail.css";
 import Bar from "../components/Bar";
 import api from "../api";
 
@@ -83,9 +84,9 @@ function FavoriteDetail() {
         <div>
             <Bar />
             {location ? (
-                <div className="favorite-detail">
+                <div className="detail-container">
                     {/* 新增刪除按鈕 */}
-                    <button onClick={() => deleteLocationDetail(location.id, location.place)}>
+                    <button className="delete-button" onClick={() => deleteLocationDetail(location.id, location.place)}>
                         Delete Location
                     </button>
                     
@@ -125,7 +126,7 @@ function FavoriteDetail() {
                         />
                         )}
                     </div>
-                    <p>Created on: {new Date(location.created_at).toLocaleDateString()}</p>
+                    <p className="create-time">Created on: {new Date(location.created_at).toLocaleDateString()}</p>
                 </div>
             ) : (
                 <p>Loading...</p>

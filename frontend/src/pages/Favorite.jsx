@@ -63,9 +63,10 @@ function Favorite() {
                         {/* 圖片覆蓋 View More 按鈕 */}
                         <Link to={`/favorite/${location.id}`}>
                             <img
-                                src={location.photo3}
+                                src={location.photo1}
                                 alt={location.place}
                                 className="favorite-image"
+                                onError={(e) => (e.target.src = location.photo2 || location.photo3 || "../../assets/car_drive.jpg")}
                             />
                         </Link>
                         <div className="favorite-content">

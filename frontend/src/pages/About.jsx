@@ -78,12 +78,12 @@ function About() {
                         <span>Full Stack developer</span>
                     </div>
                     <div className="team-member">
-                        <img src={LIN} alt="Member 2" />
+                        <img src={LIN} alt="Member 2" style={{ objectPosition: "60% 100%" }} />
                         <p>林芊妤</p>
                         <span>Chief Technology Officer</span>
                     </div>
                     <div className="team-member">
-                        <img src={HUANG} alt="Member 3" />
+                        <img src={HUANG} alt="Member 3" style={{ objectPosition: "70% 50%" }} />
                         <p>黃子寰</p>
                         <span>PM & CSS Designer</span>
                     </div>

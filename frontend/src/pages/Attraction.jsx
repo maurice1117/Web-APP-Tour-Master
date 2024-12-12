@@ -123,7 +123,7 @@ const Attraction = () => {
               <img
                 src={attraction.images[0]}
                 alt={attraction.name}
-                onError={(e) => (e.target.src = attraction.images[1])}
+                onError={(e) => (e.target.src = attraction.images[1] || attraction.images[2] || "../../assets/car_drive.jpg")}
                 width="200"
               />
               <button

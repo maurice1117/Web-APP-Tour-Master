@@ -104,6 +104,7 @@
 .about-text {
   flex: 1; /* 左側部分佔據可用寬度 */
   max-width: 60%; /* 限制最大寬度 */
+  margin: 40px 0; /* 上下間距 */
 }
 
 .about-text h2 {
@@ -160,6 +161,7 @@
 .team {
   display: grid; 
   justify-content: center; /* 居中對齊 */
+  justify-items: center;
   gap: 20px; /* 間距 */
   grid-template-columns: repeat(6, 1fr);
 }
@@ -167,7 +169,7 @@
 /* 單個成員樣式 */
 .team-member {
   flex: 1 1 calc(20% - 20px); /* 每個成員佔20%的寬度，減去間距 */
-  max-width: 200px; /* 最大寬度 */
+  max-width: 250px; /* 最大寬度 */
   text-align: center; 
   margin-bottom: 20px; 
   perspective: 1000px; /* 添加透視效果 */
@@ -176,7 +178,8 @@
 /* 團隊成員圖片樣式 */
 .team-member img {
   width: 100%; 
-  height: auto; /* 保持圖片比例 */
+  aspect-ratio: 1/1;
+  object-fit: cover;
   border-radius: 10px; /* 圓角 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 加陰影 */
   margin-bottom: 10px;
@@ -205,7 +208,7 @@
   color: #666;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 1080px) {
   .team {
     grid-template-columns: repeat(3, 1fr);
   }

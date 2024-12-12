@@ -1,62 +1,29 @@
-.favorite-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    padding: 80px;
-    margin-top: 5%;
-    margin-left: 15%;
-    margin-right: 15%;
-    background-color: #f9f9f9; /* 背景顏色 */
-    border-radius: 12px; /* 圓角邊框 */
-    border: 1px solid #e0e0e0; /* 邊框顏色 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 陰影效果 */
-  }
-  
-  .favorite-detail h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333; /* 深灰色文字 */
-    margin-bottom: 10px;
-  }
-  
-  .favorite-detail p {
-    font-size: 18px;
-    color: #555; /* 中灰色文字 */
-    line-height: 2;
-    text-align: center;
-  }
-  
-  .favorite-detail img {
-    width: 300px;
-    height: auto;
-    border-radius: 8px; /* 圓角圖片 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 圖片陰影 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 滑過時的過渡效果 */
-  }
-  
-  .favorite-detail img:hover {
-    transform: scale(1.1); /* 滑過時放大 */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 滑過時加強陰影 */
-  }
-  
-  .favorite-detail button {
-    background-color: #dc3545; /* 紅色背景 */
-    color: white; /* 白色文字 */
-    border: none; /* 無邊框 */
-    border-radius: 5px; /* 圓角按鈕 */
-    padding: 10px 20px; /* 按鈕內邊距 */
-    font-size: 16px; /* 按鈕字體大小 */
-    cursor: pointer; /* 指針樣式 */
-    transition: all 0.3s ease; /* 過渡效果 */
-  }
-  
-  .favorite-detail button:hover {
-    background-color: #c82333; /* 滑過時背景更深 */
-    transform: scale(1.05); /* 放大效果 */
-  }
-  
-  .favorite-detail button:active {
-    transform: scale(0.95); /* 按下時按壓效果 */
-  }
-  
+.delete-button {
+  all: unset;
+  display: block;
+  margin: 0 auto;
+  background-color: #dc3545; /* 紅色背景 */
+  color: white; /* 白色文字 */
+  border: none; /* 無邊框 */
+  border-radius: 5px; /* 圓角按鈕 */
+  padding: 10px 20px; /* 按鈕內邊距 */
+  font-size: 16px; /* 按鈕字體大小 */
+  cursor: pointer; /* 指針樣式 */
+  transition: all 0.3s ease; /* 過渡效果 */
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* 滑過時背景更深 */
+  transform: scale(1.05); /* 放大效果 */
+}
+
+.delete-button:active {
+  transform: scale(0.95); /* 按下時按壓效果 */
+}
+
+.create-time {
+  font-size: 18px;
+  color: #555; /* 中灰色文字 */
+  line-height: 2;
+  text-align: center;
+}

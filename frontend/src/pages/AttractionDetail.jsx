@@ -96,13 +96,19 @@ const AttractionDetail = () => {
       <Bar />
       {localSearchData ? (
         <div className="detail-container">
-          <button
-            className="favorite-button"
-            onClick={() => !favorites.includes(localSearchData.attractions[index].name) && createLocation(localSearchData.attractions[index].name)}
-            disabled={favorites.includes(localSearchData.attractions[index].name) || isSaving}
-          >
-            {favorites.includes(localSearchData.attractions[index].name) ? '💖 Added' : '🤍 Add to Favorites'}
-          </button>
+          <div className="button-container">
+            <Link to={`/attraction`}>
+              <button className="back-button">&laquo;</button>
+            </Link>
+
+            <button
+              className="favorite-button"
+              onClick={() => !favorites.includes(localSearchData.attractions[index].name) && createLocation(localSearchData.attractions[index].name)}
+              disabled={favorites.includes(localSearchData.attractions[index].name) || isSaving}
+            >
+              {favorites.includes(localSearchData.attractions[index].name) ? '💖 Added' : '🤍 Add to Favorites'}
+            </button>
+          </div>
 
           <h2 className="detail-header">{localSearchData.attractions[index].name}</h2>
 

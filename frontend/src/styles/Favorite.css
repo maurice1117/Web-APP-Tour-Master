@@ -24,7 +24,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 每行三個地點 */
   gap: 20px;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .favorite-item {
