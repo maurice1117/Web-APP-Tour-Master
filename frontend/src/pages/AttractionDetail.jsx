@@ -102,7 +102,7 @@ const AttractionDetail = () => {
             </Link>
 
             <button
-              className="favorite-button"
+              className="favorite-button-detail"
               onClick={() => !favorites.includes(localSearchData.attractions[index].name) && createLocation(localSearchData.attractions[index].name)}
               disabled={favorites.includes(localSearchData.attractions[index].name) || isSaving}
             >

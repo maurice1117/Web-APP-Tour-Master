@@ -1,4 +1,4 @@
-.delete-button {
+.delete-button-detail {
   all: unset;
   display: block;
   margin: 0 auto;
@@ -12,12 +12,12 @@
   transition: all 0.3s ease; /* 過渡效果 */
 }
 
-.delete-button:hover {
+.delete-button-detail:hover {
   background-color: #c82333; /* 滑過時背景更深 */
   transform: scale(1.05); /* 放大效果 */
 }
 
-.delete-button:active {
+.delete-button-detail:active {
   transform: scale(0.95); /* 按下時按壓效果 */
 }
 

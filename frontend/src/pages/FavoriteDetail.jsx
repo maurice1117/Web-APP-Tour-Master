@@ -86,7 +86,7 @@ function FavoriteDetail() {
             {location ? (
                 <div className="detail-container">
                     {/* 新增刪除按鈕 */}
-                    <button className="delete-button" onClick={() => deleteLocationDetail(location.id, location.place)}>
+                    <button className="delete-button-detail" onClick={() => deleteLocationDetail(location.id, location.place)}>
                         Delete Location
                     </button>
                     

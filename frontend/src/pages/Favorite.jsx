@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 import Bar from "../components/Bar";
-import Jake_the_Dog from '../../assets/Jake the Dog.jpg';
 import car_drive from '../../assets/car_drive.jpg';
 import "../styles/Favorite.css";
 
