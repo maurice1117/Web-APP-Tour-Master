@@ -56,8 +56,8 @@ python manage.py createsuperuser
 ```
 
 ## 伺服器部署 (適用於linux)
-本專案支援在docker進行部署
-前端port:`8080`
+本專案支援在docker進行部署  
+前端port:`8080`  
 後端port:`8000`
 ```
 docker-compose up --build
