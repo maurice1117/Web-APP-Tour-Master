@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Bar from "../components/Bar";
 import "../styles/Home.css"; // 引入 Home.css
@@ -9,6 +9,11 @@ const Home = () => {
   const [location, setLocation] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const handleInputChange = (e) => {
     setLocation(e.target.value);

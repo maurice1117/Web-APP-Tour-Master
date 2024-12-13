@@ -20,6 +20,7 @@ function Form({ route, method }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const viewport = document.querySelector("meta[name=viewport]");
 
         const isFormValid =
             username &&
@@ -49,6 +50,9 @@ function Form({ route, method }) {
                 if (res.data && res.data.access && res.data.refresh) {
                     localStorage.setItem(ACCESS_TOKEN, res.data.access);
                     localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                    if (viewport) {
+                        viewport.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0");
+                    }
                     navigate("/");
                 } else {
                     alert("登入失敗，請檢查用戶名或密碼");

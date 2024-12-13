@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation} from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import Bar from "../components/Bar";
 import "../styles/detail.css";
 import "../styles/AttractionDetail.css";
