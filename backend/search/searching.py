@@ -64,7 +64,7 @@ async def extract_vaild_images(urls):
 
 async def is_vaild_image(url):
     # avoid the web which cannot embedding
-    if url.startswith("https://i1."):
+    if url.startswith("https://i1.") or url.startswith("https://i2."):
         return False
     
     try:

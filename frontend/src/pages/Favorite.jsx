@@ -65,7 +65,7 @@ function Favorite() {
                                 src={location.photo1}
                                 alt={location.place}
                                 className="favorite-image"
-                                onError={(e) => (e.target.src = location.photo2 || location.photo3 || "/assets/car_drive.jpg")}
+                                onError={(e) => (e.target.src = location.photo2 || location.photo3 || car_drive)}
                             />
                         </Link>
                         <div className="favorite-content">

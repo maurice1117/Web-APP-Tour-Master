@@ -1,6 +1,11 @@
 # TourMaster
 基於React.js與Django的旅遊景點推薦網站。  
-可根據用戶輸入的地點，以ChatGPT API生成多個推薦的周邊景點，並以Bing Search/Google Search API搜尋景點照片。
+根據用戶輸入的地點，以ChatGPT API生成多個推薦的周邊景點，並以Bing Search/Google Search API搜尋景點照片。
+
+## 主要功能
+- 用戶的帳號註冊、變更密碼、設置頭貼等
+- 輸入地點，系統會生成多個推薦的周邊旅遊景點，並包含照片及介紹
+- 喜愛景點功能，用戶儲存有興趣的旅遊景點
 
 ## 運行
 ### 前端
@@ -52,6 +57,8 @@ python manage.py createsuperuser
 
 ## 伺服器部署
 本專案支援在docker進行部署
+前端port:`8080`
+後端port:`8000`
 ```
 docker-compose up --build
 ```
