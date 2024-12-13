@@ -5,7 +5,7 @@
 ## 主要功能
 - 用戶的帳號註冊、變更密碼、設置頭貼等
 - 輸入地點，系統會生成多個推薦的周邊旅遊景點，並包含照片及介紹
-- 喜愛景點功能，用戶儲存有興趣的旅遊景點
+- 喜愛景點功能，用戶可儲存有興趣的旅遊景點
 
 ## 運行 (適用於windows)
 ### 前端
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ```
 python manage.py runserver
 ```
-port預設為8000，若有更動需至`frontend/.env`修改URL路徑
+port預設為8000，若有更動需至`frontend/.env.development`修改URL路徑
 
 ### 後端資料庫
 程式碼中已包含了測試資料庫，可直接進行存取
@@ -56,15 +56,19 @@ python manage.py createsuperuser
 ```
 
 ## 伺服器部署 (適用於linux)
-本專案支援在docker進行部署  
-前端port:`8080`  
-後端port:`8000`
+本專案支援在docker進行部署，並以Nginx進行反向代理  
+前端預設port:`8080`  
+後端預設port:`8000`
 ```
-docker-compose up --build
+docker compose up --build
+```
+也可自行設定連接埠
+```
+BACKEND_PORT={backend port} FRONTEND_PORT={frontend port} docker compose up --build
 ```
 
 ## API KEY相關設定
-由於後端串接了ChatGPT API及Bing Search/Google Search API，因此需自行至`backend/config.py`設置API KEY，也可在此處設定要使用Bing還是Google進行圖片搜尋  
+由於後端串接了ChatGPT API及Bing Search/Google Search API，因此需自行至`backend/config.py`設置API KEY，也可在此處設定系統要使用Bing還是Google進行圖片搜尋  
 
 (Bing的圖片品質較佳但需付費，Google則每天皆有免費額度)
 

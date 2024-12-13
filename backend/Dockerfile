@@ -9,4 +9,4 @@ RUN pip install --upgrade pip  && \
 COPY . .
 RUN python manage.py collectstatic --noinput
 EXPOSE 8000
-CMD ["gunicorn", "TourMaster.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "TourMaster.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "8", "--threads", "4"]

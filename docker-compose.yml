@@ -8,9 +8,8 @@ services:
     volumes:
       - ./backend/media:/app/media
       - ./backend/db.sqlite3:/app/db.sqlite3
-
     ports:
-      - "8000:8000"
+      - "${BACKEND_PORT:-8000}:8000"
     environment:
       - DEBUG=False
       - ALLOWED_HOSTS=127.0.0.1,localhost
@@ -20,4 +19,4 @@ services:
       context: ./frontend
     container_name: react_app
     ports:
-      - "8080:8080"
+      - "${FRONTEND_PORT:-8080}:8080"
