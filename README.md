@@ -7,7 +7,7 @@
 - 輸入地點，系統會生成多個推薦的周邊旅遊景點，並包含照片及介紹
 - 喜愛景點功能，用戶儲存有興趣的旅遊景點
 
-## 運行
+## 運行 (適用於windows)
 ### 前端
 #### 安裝套件
 ```
@@ -43,8 +43,8 @@ port預設為8000，若有更動需至`frontend/.env`修改URL路徑
 #### 初始化資料庫
 移除舊資料庫及用戶頭貼
 ```
-rm db.sqlite3
-rm -f media/avatars
+del db.sqlite3
+rmdir /s /q media\avatars
 ```
 重新建立資料庫
 ```
@@ -55,7 +55,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-## 伺服器部署
+## 伺服器部署 (適用於linux)
 本專案支援在docker進行部署
 前端port:`8080`
 後端port:`8000`
