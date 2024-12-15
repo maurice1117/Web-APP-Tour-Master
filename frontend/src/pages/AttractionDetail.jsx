@@ -178,7 +178,7 @@ const AttractionDetail = () => {
                   <img
                     src={attraction.images[0]}
                     alt={attraction.name}
-                    onError={(e) => (e.target.src = attraction.images[1])}
+                    onError={(e) => (e.target.src = attraction.images[1] || attraction.images[2] || "/assets/car_drive.jpg")}
                   />
                   <Link to={`/attraction/${(Number(index) + 1 + Number(idx)) % 9}`}>
                     <button className="view-more-button">View More</button>
